@@ -7,10 +7,11 @@ public abstract class ObjetVolant {
 	private int vVitesse;
 	private String vLienPhoto;
 
-	public ObjetVolant(int pHeight, int pWidth, int pVitesse) {
+	public ObjetVolant(int pHeight, int pWidth, int pVitesse, String pLienPhoto) {
 		this.vHeight = pHeight;
 		this.vWidth = pWidth;
 		this.vVitesse = pVitesse;
+		this.setvLienPhoto(pLienPhoto);
 
 	}
 
@@ -36,6 +37,14 @@ public abstract class ObjetVolant {
 
 	public void setVitesse(int pVitesse) {
 		this.vVitesse = pVitesse;
+	}
+
+	public String getvLienPhoto() {
+		return vLienPhoto;
+	}
+
+	public void setvLienPhoto(String vLienPhoto) {
+		this.vLienPhoto = vLienPhoto;
 	}
 
 }

@@ -2,11 +2,11 @@ package models;
 
 public abstract class Meteorite extends ObjetVolant {
 
-	private int degat;
-
-	public Meteorite(int pHeight, int pWidth, int pVitesse, int pDegat) {
-		super(pHeight, pWidth, pVitesse);
+	public Meteorite(int pHeight, int pWidth, int pVitesse, String pLienPhoto, int pDegat) {
+		super(pHeight, pWidth, pVitesse, pLienPhoto);
 		this.degat = pDegat;
 	}
+
+	private int degat;
 
 }
