@@ -13,8 +13,7 @@ public class PanelCentral extends JPanel {
 	private BufferedImage background;
 
 	public PanelCentral() {
-		this.add(new PanelAvion());
-		this.add(new PanelMeteorite());
+
 		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/background.png");// fond d'ecran
 
 		try {
@@ -33,7 +32,7 @@ public class PanelCentral extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {// dessiner image
 
-		super.paintComponent(g);
+		// super.paintComponent(g);
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 

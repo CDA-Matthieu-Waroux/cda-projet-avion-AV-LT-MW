@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -14,21 +15,23 @@ public class PanelMeteorite extends JPanel {
 	private BufferedImage meteorite;
 	private int positionHorizontale;
 	private int positionVerticale;
+	private Random rnd = new Random();
 
 	public PanelMeteorite() {
 		positionVerticale = -50;
-		int rand = (int) (Math.random() * 720);
+		int rand = rnd.nextInt(721);
 		positionHorizontale = rand;
 
 		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/meteorite.png");
 
 		try {
-			meteorite = ImageIO.read(img);// avec read, tj ioexception
+			meteorite = ImageIO.read(img);
+			// avec read, tj ioexception
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		this.setSize(800, 800);
-		this.setFocusable(false);// le focus sera fait sur ce panel !
+		// this.setFocusable(false);// le focus sera fait sur ce panel !
 
 		this.setOpaque(false);// definir opacity du panel à 0, pour voir le fond
 		// d'écran
@@ -37,8 +40,15 @@ public class PanelMeteorite extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {// dessiner image
+		// super.paintComponent(g);
+		positionVerticale = positionVerticale + 1;
+		if (positionVerticale > 600) {
+			positionVerticale = 0;
+			positionHorizontale = rnd.nextInt(721);
+		}
 
-		super.paintComponent(g);
+		System.out.println("je suis repeint");
+
 		g.drawImage(meteorite, positionHorizontale, positionVerticale, 80, 80, null);
 	}
 
