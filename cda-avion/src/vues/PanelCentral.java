@@ -14,6 +14,7 @@ public class PanelCentral extends JPanel {
 
 	public PanelCentral() {
 		this.add(new PanelAvion());
+		this.add(new PanelMeteorite());
 		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/background.png");// fond d'ecran
 
 		try {
@@ -25,7 +26,7 @@ public class PanelCentral extends JPanel {
 			e.printStackTrace();
 		}
 		this.setLayout(null);
-		this.setSize(800, 800);
+		this.setSize(720, 800);
 
 	}
 

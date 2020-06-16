@@ -20,6 +20,7 @@ public class MyKeyListener implements KeyListener {
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_UP:
+
 			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 10);
 			this.avion.repaint();
 

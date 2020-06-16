@@ -15,32 +15,8 @@ public class PanelAvion extends JPanel {
 
 	private BufferedImage vaisseau;
 
-	public BufferedImage getVaisseau() {
-		return vaisseau;
-	}
-
-	public void setVaisseau(BufferedImage vaisseau) {
-		this.vaisseau = vaisseau;
-	}
-
-	public int getDeplacementVertical() {
-		return deplacementVertical;
-	}
-
-	public void setDeplacementVertical(int deplacementVertical) {
-		this.deplacementVertical = deplacementVertical;
-	}
-
-	public int getDeplacementHorizontal() {
-		return deplacementHorizontal;
-	}
-
-	public void setDeplacementHorizontal(int deplacementHorizontal) {
-		this.deplacementHorizontal = deplacementHorizontal;
-	}
-
 	private int deplacementVertical = 620;
-	private int deplacementHorizontal = 360;
+	private int deplacementHorizontal = 310;
 
 	public PanelAvion() {
 
@@ -78,6 +54,9 @@ public class PanelAvion extends JPanel {
 			deplacementVertical = deplacementVertical + 10;
 
 		} else if (deplacementVertical > 610) {// hauteur panel de 800 pixels - hauteur de l'image, 800-80
+
+		} else if (deplacementVertical > 620) {// hauteur panel de 800 pixels - hauteur de l'image, 800-80
+
 			deplacementVertical = deplacementVertical - 10;
 		}
 
@@ -85,4 +64,27 @@ public class PanelAvion extends JPanel {
 
 	}
 
+	public BufferedImage getVaisseau() {
+		return vaisseau;
+	}
+
+	public void setVaisseau(BufferedImage vaisseau) {
+		this.vaisseau = vaisseau;
+	}
+
+	public int getDeplacementVertical() {
+		return deplacementVertical;
+	}
+
+	public void setDeplacementVertical(int deplacementVertical) {
+		this.deplacementVertical = deplacementVertical;
+	}
+
+	public int getDeplacementHorizontal() {
+		return deplacementHorizontal;
+	}
+
+	public void setDeplacementHorizontal(int deplacementHorizontal) {
+		this.deplacementHorizontal = deplacementHorizontal;
+	}
 }
