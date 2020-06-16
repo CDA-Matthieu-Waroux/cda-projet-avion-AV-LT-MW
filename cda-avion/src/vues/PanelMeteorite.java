@@ -16,6 +16,7 @@ public class PanelMeteorite extends JPanel {
 	private int positionHorizontale;
 	private int positionVerticale;
 	private Random rnd = new Random();
+	private int choix = 1;
 
 	public PanelMeteorite() {
 		positionVerticale = -50;
@@ -47,9 +48,14 @@ public class PanelMeteorite extends JPanel {
 			positionHorizontale = rnd.nextInt(721);
 		}
 
-		System.out.println("je suis repeint");
+		if (choix == 1) {
+			g.drawImage(meteorite, positionHorizontale + 30, positionVerticale, 30, 30, null);
+			choix = 2;
+		} else {
+			g.drawImage(meteorite, positionHorizontale - 30, positionVerticale, 30, 30, null);
+			choix = 1;
+		}
 
-		g.drawImage(meteorite, positionHorizontale, positionVerticale, 80, 80, null);
 	}
 
 }
