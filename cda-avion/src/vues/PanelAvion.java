@@ -1,6 +1,5 @@
 package vues;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -29,10 +28,8 @@ public class PanelAvion extends JPanel {
 		}
 		this.setSize(700, 800);
 		this.setFocusable(true);// le focus sera fait sur ce panel !
-
 		this.setOpaque(false);// definir opacity du panel à 0, pour voir le fond
 		// d'écran
-		this.setBackground(Color.BLUE);
 		this.addKeyListener(new MyKeyListener(this));
 	}
 
@@ -59,6 +56,8 @@ public class PanelAvion extends JPanel {
 
 			deplacementVertical = deplacementVertical - 10;
 		}
+
+		// super.paintComponent(g);
 
 		g.drawImage(vaisseau, deplacementHorizontal, deplacementVertical, 80, 80, null);// taile de l'image, vaisseau
 
