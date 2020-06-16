@@ -20,25 +20,25 @@ public class MyKeyListener implements KeyListener {
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_UP:
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 20);
+			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 10);
 			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_DOWN:
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() + 20);
+			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() + 10);
 			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_LEFT:
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() - 20);
+			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() - 10);
 			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() + 20);
+			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() + 10);
 			this.avion.repaint();
 
 			break;

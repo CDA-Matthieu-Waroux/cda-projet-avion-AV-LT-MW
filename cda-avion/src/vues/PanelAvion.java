@@ -67,18 +67,18 @@ public class PanelAvion extends JPanel {
 
 		if (deplacementHorizontal < 0) {
 
-			deplacementHorizontal = deplacementHorizontal + 20;
-		} else if (deplacementHorizontal > 620) {
+			deplacementHorizontal = deplacementHorizontal + 10;
+		} else if (deplacementHorizontal > 610) {
 
-			deplacementHorizontal = deplacementHorizontal - 20;
+			deplacementHorizontal = deplacementHorizontal - 10;
 
 		}
 
 		if (deplacementVertical < 0) {
-			deplacementVertical = deplacementVertical + 20;
+			deplacementVertical = deplacementVertical + 10;
 
-		} else if (deplacementVertical > 620) {// hauteur panel de 800 pixels - hauteur de l'image, 800-80
-			deplacementVertical = deplacementVertical - 20;
+		} else if (deplacementVertical > 610) {// hauteur panel de 800 pixels - hauteur de l'image, 800-80
+			deplacementVertical = deplacementVertical - 10;
 		}
 
 		g.drawImage(vaisseau, deplacementHorizontal, deplacementVertical, 80, 80, null);// taile de l'image, vaisseau
