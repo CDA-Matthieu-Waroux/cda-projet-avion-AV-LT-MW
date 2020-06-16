@@ -19,7 +19,7 @@ public class MyKeyListener implements KeyListener {
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_UP:
-			this.avion.repaint(x, y, 80, 80);
+			this.avion.repaint(0, 0, 80, 80);
 
 			break;
 
