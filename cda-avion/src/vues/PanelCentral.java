@@ -26,7 +26,7 @@ public class PanelCentral extends JPanel {
 			e.printStackTrace();
 		}
 		this.setLayout(null);
-		this.setSize(800, 800);
+		this.setSize(720, 800);
 
 	}
 

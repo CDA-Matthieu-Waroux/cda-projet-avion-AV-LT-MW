@@ -10,7 +10,7 @@ public class MaFenetre extends JFrame {
 
 	public MaFenetre() {
 
-		this.setSize(800, 800);// largeur, hauteur
+		this.setSize(700, 800);// largeur, hauteur
 		this.setLocation(300, 0);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
