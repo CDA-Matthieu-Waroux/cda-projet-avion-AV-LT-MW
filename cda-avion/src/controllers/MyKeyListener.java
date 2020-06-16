@@ -16,22 +16,30 @@ public class MyKeyListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_UP:
-			this.avion.repaint(x, y, 80, 80);
+			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 20);
+			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_DOWN:
+			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() + 20);
+			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_LEFT:
+			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() - 20);
+			this.avion.repaint();
 
 			break;
 
 		case KeyEvent.VK_RIGHT:
+			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() + 20);
+			this.avion.repaint();
 
 			break;
 
