@@ -3,11 +3,11 @@ package controllers;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import vues.PanelMeteorite;
+import models.MaFenetre;
 
 public class MyTimer extends Timer {
 
-	public MyTimer(PanelMeteorite vpnlM, long vTime) {
+	public MyTimer(MaFenetre vpnlM, long vTime) {
 
 		Timer t = new Timer();
 
