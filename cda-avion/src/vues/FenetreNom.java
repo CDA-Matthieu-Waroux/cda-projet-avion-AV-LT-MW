@@ -1,8 +1,5 @@
 package vues;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -38,36 +35,35 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Saisissez votre nom pour jouer à EVITATOR D'ASTEROÏDES 3000");
-		this.setLayout(new BorderLayout());// definition du layout pour la fenetre
+		this.setLayout(null);// definition du layout pour la fenetre
 
-		containerNom.setBackground(Color.GRAY);
-		containerBouton.setBackground(Color.DARK_GRAY);
-
+//		containerNom.setBackground(Color.GRAY);
 		containerNom.setSize(LARGEUR_CONTAINER_NOM, HAUTEUR_CONTAINER_NOM);
-		containerBouton.setSize(LARGEUR_CONTAINER_BOUTON, HAUTEUR_CONTAINER_BOUTON);
-
-		containerNom.setLayout(new BorderLayout());
-		containerBouton.setLayout(null);
+		containerNom.setLayout(null);
+		containerNom.setLocation(0, 0);
 
 		Font police = new Font("Arial", Font.BOLD, 14);
 		jtf1.setFont(police);
-		jtf1.setPreferredSize(new Dimension(150, 30));
-		jtf1.setForeground(Color.BLACK);
+		jtf1.setBounds(200, 10, 200, 30);
+
+		label.setBounds(50, 0, 150, 50);
 
 		containerNom.add(label);
 		containerNom.add(jtf1);
-
 		containerNom.add(top);
-		this.add(containerNom, BorderLayout.NORTH);
+		this.add(containerNom);
+
+		containerBouton.setSize(LARGEUR_CONTAINER_BOUTON, HAUTEUR_CONTAINER_BOUTON);
+		containerBouton.setLayout(null);
+		containerBouton.setLocation(0, 75);
 
 		this.boutonEnregistrement = new JButton();
-		this.boutonEnregistrement.setText("Cliquez ici pour commencer la partie");
-		this.boutonEnregistrement.setBounds(50, 50, 300, 50);
+		this.boutonEnregistrement.setText("Get Start!");
+		this.boutonEnregistrement.setBounds(200, 70, 100, 30);
 		this.boutonEnregistrement.addActionListener(new MyActionListener());
-		containerBouton.add(boutonEnregistrement, BorderLayout.CENTER);
+		containerBouton.add(boutonEnregistrement);
 
-		this.add(containerBouton, BorderLayout.SOUTH);
-
+//		this.add(containerBouton);
 		getContentPane().add(this.boutonEnregistrement);
 
 		this.setVisible(true);
