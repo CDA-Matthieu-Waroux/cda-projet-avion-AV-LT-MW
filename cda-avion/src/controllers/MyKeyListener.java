@@ -4,59 +4,63 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import vues.PanelAvion;
+import vues.PanelCentral;
 
 public class MyKeyListener implements KeyListener {
 
 	private PanelAvion avion;
+	private PanelCentral viveLAdrogue;
 
-	public MyKeyListener(PanelAvion pAvion) {
+	public MyKeyListener(PanelAvion pAvion, PanelCentral vCentral) {
 		this.avion = pAvion;
+		this.viveLAdrogue = vCentral;
 
 	}
 
+	private int deplacementVertical = 0;
+	private int deplacementHorizontal = 0;
+
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (this.avion.getDeplacementHorizontal() < 0) {
+		if (deplacementHorizontal < 0) {
 
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() + 10);
-		} else if (this.avion.getDeplacementHorizontal() > 610) {
+			deplacementHorizontal = deplacementHorizontal + 10;
+		} else if (deplacementHorizontal > 610) {
 
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() - 10);
+			deplacementHorizontal = deplacementHorizontal - 10;
 
 		}
 
-		if (this.avion.getDeplacementVertical() < 0) {
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() + 10);
+		if (deplacementVertical < 0) {
+			deplacementVertical = deplacementVertical + 10;
 
-		} else if (this.avion.getDeplacementVertical() > 610) {// hauteur panel de 800 pixels - hauteur de l'image,
-																// 800-80
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 10);
+		} else if (deplacementVertical > 610) {// hauteur panel de 800 pixels - hauteur de l'image,
+												// 800-80
+			deplacementVertical = deplacementVertical - 10;
 		}
 
 		switch (e.getKeyCode()) {
 
 		case KeyEvent.VK_UP:
-
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() - 10);
-			// this.avion.repaint();
-
+			deplacementVertical = deplacementVertical - 10;
+			this.avion.setLocation(deplacementHorizontal, deplacementVertical);
 			break;
 
 		case KeyEvent.VK_DOWN:
-			this.avion.setDeplacementVertical(this.avion.getDeplacementVertical() + 10);
-			// this.avion.repaint();
+			deplacementVertical = deplacementVertical + 10;
+			this.avion.setLocation(deplacementHorizontal, deplacementVertical);
 
 			break;
 
 		case KeyEvent.VK_LEFT:
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() - 10);
-			// this.avion.repaint();
+			deplacementHorizontal = deplacementHorizontal - 10;
+			this.avion.setLocation(deplacementHorizontal, deplacementVertical);
 
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			this.avion.setDeplacementHorizontal(this.avion.getDeplacementHorizontal() + 10);
-			// this.avion.repaint();
+			deplacementHorizontal = deplacementHorizontal + 10;
+			this.avion.setLocation(deplacementHorizontal, deplacementVertical);
 
 			break;
 

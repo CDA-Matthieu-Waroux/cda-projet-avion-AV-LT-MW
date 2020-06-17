@@ -1,6 +1,6 @@
 package com.main;
 
-import models.MaFenetre;
+import vues.MaFenetre;
 
 public class Test {
 
