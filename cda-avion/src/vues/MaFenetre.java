@@ -36,9 +36,13 @@ public class MaFenetre extends JFrame {
 		new MyTimer(TAUX_RAFRAICHESSEMENT, pnM1, pnM2, pnM3, pnM4);
 		this.add(pnC);
 
+		this.setVisible(true);// tj en dernier
+		MonThread t1 = new MonThread(pnA, pnM1, pnM2, pnM3);
+//		MonThread t1 = new MonThread(pnA, pnM1);
+		t1.run();
+
 		// this.add(new PanelAvion());
 
-		this.setVisible(true);// tj en dernier
 	}
 
 }
