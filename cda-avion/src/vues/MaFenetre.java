@@ -17,7 +17,6 @@ public class MaFenetre extends JFrame {
 	private final MonThread t2;
 	private final MonThread t3;
 	private final MonThread t4;
-	private MyTimer myTimer;
 
 	public MaFenetre() {
 
@@ -63,6 +62,7 @@ public class MaFenetre extends JFrame {
 		t3.setContinuer(false);
 		t4.setContinuer(false);
 		this.dispose();
+		this.setVisible(false);
 		new FenetreGameOver();
 	}
 

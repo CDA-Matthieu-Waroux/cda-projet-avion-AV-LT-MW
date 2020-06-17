@@ -1,10 +1,11 @@
 package com.main;
 
-import vues.MaFenetre;
+import vues.FenetreGameOver;
 
 public class Test {
 
 	public static void main(String[] args) {
-		new MaFenetre();
+		// new MaFenetre();
+		new FenetreGameOver();
 	}
 }

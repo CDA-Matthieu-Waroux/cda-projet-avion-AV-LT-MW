@@ -7,6 +7,11 @@ import javax.swing.JPanel;
 
 public class PanelFooter extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PanelFooter() {
 
 		this.setLayout(new GridLayout(3, 3));// 3lignes, 3colonnes
