@@ -22,7 +22,6 @@ public class MyTimer extends Timer {
 				}
 				int y = vpnlM.getY() + 10;
 				vpnlM.setLocation(vpnlM.getX(), y);
-				System.out.println(vpnlM.getLocation());
 			}
 		}, 0, vTime);
 	}
