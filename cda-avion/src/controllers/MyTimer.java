@@ -51,8 +51,8 @@ public class MyTimer extends Timer {
 					}
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
-						panelMeteorite.setLocation(panelMeteorite.getX(), y);
-						// zigZag(panelMeteorite, y);
+						int abcisse = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
+						panelMeteorite.setLocation(abcisse, y + 2);
 
 					} else {
 						panelMeteorite.setLocation(panelMeteorite.getX(), y);
@@ -63,15 +63,27 @@ public class MyTimer extends Timer {
 		}, 0, vTime);
 	}
 
-//	private synchronized void zigZag(PanelMeteorite vPanelMeteorite, int vY, Meteorite meteo) {
-//		if (choix == 1) {
-//			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 30, vY);
-//			choix = 2;
-//		} else {
-//			vPanelMeteorite.setLocation(vPanelMeteorite.getX() - 30, vY);
-//			choix = 1;
-//		}
-//
-//	}
+	private int zigZag(MeteoriteZigZag pMeteore, PanelMeteorite pPMe) {
+		int abcisse = 0;
+
+		if (pMeteore.isLeft() == true) {
+			abcisse = pPMe.getX() - pMeteore.getVitesse() - 10;
+			pMeteore.setCompteur(pMeteore.getCompteur() + 1);
+			if (pMeteore.getCompteur() == 10) {
+				pMeteore.setLeft(false);
+				pMeteore.setCompteur(0);
+			}
+		} else {
+			abcisse = pPMe.getX() + pMeteore.getVitesse() + 10;
+			pMeteore.setCompteur(pMeteore.getCompteur() + 1);
+			if (pMeteore.getCompteur() == 10) {
+				pMeteore.setLeft(true);
+				pMeteore.setCompteur(0);
+			}
+
+		}
+
+		return abcisse;
+	}
 
 }
