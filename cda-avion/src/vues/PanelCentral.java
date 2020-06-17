@@ -30,7 +30,7 @@ public class PanelCentral extends JPanel {
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {// dessiner image
+	public void paintComponent(Graphics g) {// dessiner image
 
 		// super.paintComponent(g);
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
