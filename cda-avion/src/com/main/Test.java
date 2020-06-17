@@ -1,10 +1,11 @@
 package com.main;
 
-import models.MaFenetre;
+import vues.FenetreNom;
 
 public class Test {
 
 	public static void main(String[] args) {
-		new MaFenetre();
+		new FenetreNom();
+
 	}
 }
