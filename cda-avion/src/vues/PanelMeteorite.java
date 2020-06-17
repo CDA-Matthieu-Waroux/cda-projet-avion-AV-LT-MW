@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import controllers.MyTimer;
 import models.Meteorite;
 import tools.MeteoriteAleatoire;
 
@@ -20,17 +19,35 @@ public class PanelMeteorite extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private BufferedImage imgMeteorite;
+
+	public BufferedImage getImgMeteorite() {
+		return imgMeteorite;
+	}
+
+	public void setImgMeteorite(BufferedImage imgMeteorite) {
+		this.imgMeteorite = imgMeteorite;
+	}
+
 	private int positionHorizontale;
 	private int positionVerticale;
 	private Random rnd = new Random();
 	private Meteorite meteorite = MeteoriteAleatoire.choixAleatoireMeteorite();
 
+	public Meteorite getMeteorite() {
+		return meteorite;
+	}
+
+	public void setMeteorite(Meteorite meteorite) {
+		this.meteorite = meteorite;
+	}
+
 	public PanelMeteorite() {
-		positionVerticale = -30;
+		this.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
+		this.setOpaque(false);
+		positionVerticale = -meteorite.getHeightOJ();
+		positionHorizontale = rnd.nextInt(MaFenetre.LARGEUR - meteorite.getWidthOJ());
 
-		positionHorizontale = rnd.nextInt(720);
-
-		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/meteorite.png");
+		InputStream img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
 
 		try {
 			imgMeteorite = ImageIO.read(img);
@@ -38,17 +55,15 @@ public class PanelMeteorite extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.setSize(30, 30);
+
 		this.setLocation(positionHorizontale, positionVerticale);
-		this.setOpaque(false);
-		new MyTimer(this, 50);
 
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {// dessiner image
 		super.paintComponent(g);
-		g.drawImage(imgMeteorite, 0, 0, 30, 30, null);
+		g.drawImage(imgMeteorite, 0, 0, meteorite.getWidthOJ(), meteorite.getHeightOJ(), null);
 
 	}
 

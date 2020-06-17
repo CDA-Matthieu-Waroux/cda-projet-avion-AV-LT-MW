@@ -13,11 +13,16 @@ import models.MeteoriteZigZag;
 
 public class MeteoriteAleatoire {
 	private final static int NB_RANDOM = 5;
-	private static MeteoriteSimple simple = new MeteoriteSimple(30, 30, 2, "/ressources/meteorite.png");
-	private static MeteoriteFeu feu = new MeteoriteFeu(40, 40, 1, "/ressources/meteoriteDeFeu.png");
-	private static MeteoriteGlace glace = new MeteoriteGlace(35, 35, 1, "/ressources/meteoriteGlace.png");
-	private static MeteoriteIceBerg iceBerg = new MeteoriteIceBerg(70, 70, 1, "/ressources/meteoriteIceBerg.png");
-	private static MeteoriteZigZag zigzag = new MeteoriteZigZag(30, 30, 1, "/ressources/meteoriteZigzag.png");
+	private final static byte VITESSE_NORMAL = 2;
+	private final static byte VITESSE_LENTE = 1;
+
+	private static MeteoriteSimple simple = new MeteoriteSimple(30, 30, VITESSE_NORMAL, "/ressources/meteorite.png");
+	private static MeteoriteFeu feu = new MeteoriteFeu(40, 40, VITESSE_LENTE, "/ressources/meteoriteFeu.png");
+	private static MeteoriteGlace glace = new MeteoriteGlace(35, 35, VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
+	private static MeteoriteIceBerg iceBerg = new MeteoriteIceBerg(70, 70, VITESSE_NORMAL,
+			"/ressources/meteoriteIceBerg.png");
+	private static MeteoriteZigZag zigzag = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
+			"/ressources/meteoriteZigzag.png");
 
 	private static List<Meteorite> listMeteo = new ArrayList<>();
 
