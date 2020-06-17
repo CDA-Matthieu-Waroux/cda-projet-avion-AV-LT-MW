@@ -27,11 +27,10 @@ public class MonThread extends Thread {
 		while (continuer) {
 
 			try {
-				this.sleep(300); // Limite la consommation de mémoire de la boucle while
+				Thread.sleep(300); // Limite la consommation de mémoire de la boucle while
 				calculerCollision(vPnA, vPnMe);
 
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -94,13 +93,13 @@ public class MonThread extends Thread {
 						e.printStackTrace();
 					}
 					pAv.repaint();
-					this.sleep(500);
+					Thread.sleep(500);
 					pAv.getAvion().setvLienPhoto("/ressources/VaisseauGayyyyy.png");
 					img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
 
 					try {
 						pAv.setVaisseau(ImageIO.read(img));
-						this.sleep(1000);
+						Thread.sleep(1000);
 						// avec read, tj ioexception
 					} catch (IOException e) {
 						e.printStackTrace();

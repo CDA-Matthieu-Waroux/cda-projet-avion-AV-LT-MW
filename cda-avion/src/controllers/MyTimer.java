@@ -18,8 +18,6 @@ import vues.PanelMeteorite;
 
 public class MyTimer extends Timer {
 	private static Meteorite meteorite;
-	private int choix = 10;
-	private int borne = 0;
 
 	public static final int SCORE_MAX = 999;
 
@@ -33,6 +31,7 @@ public class MyTimer extends Timer {
 			@Override
 			public void run() {
 				if (pMyAvion.getPv() <= 0) {
+
 					this.cancel();
 				}
 				for (PanelMeteorite panelMeteorite : pPnM) {
