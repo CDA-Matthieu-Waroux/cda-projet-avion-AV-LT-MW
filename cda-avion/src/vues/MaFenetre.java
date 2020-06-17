@@ -41,10 +41,10 @@ public class MaFenetre extends JFrame {
 		pnC.add(pnM3);
 		pnC.add(pnM4);
 
-		myTimer = new MyTimer(TAUX_RAFRAICHESSEMENT, pnM1, pnM2, pnM3, pnM4);
+		myTimer = new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), pnM1, pnM2, pnM3, pnM4);
 		this.add(pnC);
 
-		this.setVisible(true);// tj en dernier
+		this.setVisible(true);// tj en dernier mais avant le démarrage des threads!
 		t1 = new MonThread(pnA, pnM1, this);
 		t2 = new MonThread(pnA, pnM2, this);
 		t3 = new MonThread(pnA, pnM3, this);
@@ -54,10 +54,6 @@ public class MaFenetre extends JFrame {
 		t2.start();
 		t3.start();
 		t4.start();
-		// ça dépendra de l'avis d el'afpa
-		// mais ça va repartir au niveau du COVID
-		// Tout le monde s'en bat les couilles mtn des yep
-		// this.add(new PanelAvion());
 
 	}
 
@@ -66,12 +62,8 @@ public class MaFenetre extends JFrame {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
-		if (myTimer != null) {
-			myTimer.cancel();
-		}
-
-		myTimer = null;
-
+		this.dispose();
+		new FenetreGameOver();
 	}
 
 }

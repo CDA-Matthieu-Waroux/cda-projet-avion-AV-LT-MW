@@ -1,5 +1,14 @@
 package vues;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+
+import models.Meteorite;
+import tools.MeteoriteAleatoire;
+
 public class MonThread extends Thread {
 
 	private boolean continuer = true;
@@ -18,8 +27,8 @@ public class MonThread extends Thread {
 		while (continuer) {
 
 			try {
-				this.sleep(300);
-				calculerColision(vPnA, vPnMe);
+				this.sleep(300); // Limite la consommation de mémoire de la boucle while
+				calculerCollision(vPnA, vPnMe);
 
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -30,7 +39,7 @@ public class MonThread extends Thread {
 
 	}
 
-	public void calculerColision(PanelAvion pAv, PanelMeteorite pMe) {
+	public void calculerCollision(PanelAvion pAv, PanelMeteorite pMe) {
 		int xMet1 = pMe.getX(); // abcisse du pixel inital du panneau
 		int xMet2 = pMe.getWidth() + pMe.getX(); // abcisse du pixel opposé du panneau
 
@@ -43,20 +52,61 @@ public class MonThread extends Thread {
 		int yAv1 = pAv.getY();
 		int yAv2 = pAv.getY() + pAv.getHeight();
 
-		double chevauchementX = Math.signum((xMet1 - xAv2) * (xMet2 - xAv1));
+		double chevauchementX = Math.signum((xMet1 - xAv2) * (xMet2 - xAv1)); // signum retourne 1.0, 0.0 ou -1.0
 
 		double chevauchementY = Math.signum((yMet1 - yAv2) * (yMet2 - yAv1));
 
-		if (chevauchementX == chevauchementY && chevauchementX == -1.0) {
+		if (chevauchementX == chevauchementY && chevauchementX == -1.0) { // Collision avec cette météorite.
 			System.out.println("BOOOOM!!!!!!");
-			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat());
+			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
 			System.out.println(pAv.getAvion().getPv());
-			if (pAv.getAvion().getPv() <= 0) {
+			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
 				this.continuer = false;
 				vMaFenetre.finDePartie();
+
 			} else {
-				try {
-					this.sleep(1500);
+				try { // Ajout d'une image d'explosion et empêche de subir les dégats de la même
+						// météorite
+
+					pMe.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
+					Meteorite meteorite = pMe.getMeteorite();
+					pMe.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
+					InputStream imphotoMeteor = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
+
+					try {
+						pMe.setImgMeteorite(ImageIO.read(imphotoMeteor));
+						// avec read, tj ioexception
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					pMe.repaint();
+					Random rnd = new Random();
+					pMe.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
+
+					pAv.getAvion().setvLienPhoto("/ressources/explosion.png");
+
+					InputStream img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
+
+					try {
+						pAv.setVaisseau(ImageIO.read(img));
+						// avec read, tj ioexception
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					pAv.repaint();
+					this.sleep(500);
+					pAv.getAvion().setvLienPhoto("/ressources/VaisseauGayyyyy.png");
+					img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
+
+					try {
+						pAv.setVaisseau(ImageIO.read(img));
+						this.sleep(1000);
+						// avec read, tj ioexception
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					pAv.repaint();
 				} catch (InterruptedException e) {
 					System.out.println("Mode Fantôme");
 					e.printStackTrace();

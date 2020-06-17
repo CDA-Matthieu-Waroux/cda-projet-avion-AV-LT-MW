@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
+import models.Avion;
 import models.Meteorite;
 import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
@@ -18,7 +19,7 @@ import vues.PanelMeteorite;
 public class MyTimer extends Timer {
 	private static Meteorite meteorite;
 
-	public MyTimer(long vTime, PanelMeteorite... pPnM) {
+	public MyTimer(long vTime, Avion pMyAvion, PanelMeteorite... pPnM) {
 
 		Random rnd = new Random();
 		Timer t = new Timer();
@@ -27,6 +28,9 @@ public class MyTimer extends Timer {
 
 			@Override
 			public void run() {
+				if (pMyAvion.getPv() <= 0) {
+					this.cancel();
+				}
 				for (PanelMeteorite panelMeteorite : pPnM) {
 					meteorite = panelMeteorite.getMeteorite();
 
