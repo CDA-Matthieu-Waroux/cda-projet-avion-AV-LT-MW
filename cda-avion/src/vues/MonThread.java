@@ -1,41 +1,33 @@
 package vues;
 
-import models.Avion;
-import models.ObjetVolant;
-
 public class MonThread extends Thread {
 
 	private boolean continuer = true;
-	private PanelAvion pnA;
-	private PanelMeteorite pnM1;
-	private PanelMeteorite pnM2;
-	private PanelMeteorite pnM3;
+	private PanelAvion vPnA;
+	private PanelMeteorite vPnMe;
+	private MaFenetre vMaFenetre;
 
-	public MonThread(PanelAvion pnA, PanelMeteorite pnM1, PanelMeteorite pnM2, PanelMeteorite pnM3) {
-
-		this.pnA = pnA;
-		this.pnM1 = pnM1;
-		this.pnM2 = pnM2;
-		this.pnM3 = pnM3;
-
-	}
-
-	public MonThread(PanelAvion pnA, PanelMeteorite pnM1) {
-		this.pnA = pnA;
-		this.pnM1 = pnM1;
+	public MonThread(PanelAvion pnA, PanelMeteorite pnMe, MaFenetre pFenetre) {
+		this.vPnA = pnA;
+		this.vPnMe = pnMe;
+		this.vMaFenetre = pFenetre;
 	}
 
 	@Override
 	public void run() {
-		ObjetVolant avion = new Avion(80, 80, 10, "/ressources/VaisseauGayyyyy.png", 5);
 		while (continuer) {
-			calculerColision(pnA, pnM1);
-			calculerColision(pnA, pnM2);
-			calculerColision(pnA, pnM3);
-			// calculerColision(pnA,pnM1);
+
+			try {
+				this.sleep(300);
+				calculerColision(vPnA, vPnMe);
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
-		super.run();
+
 	}
 
 	public void calculerColision(PanelAvion pAv, PanelMeteorite pMe) {
@@ -57,16 +49,27 @@ public class MonThread extends Thread {
 
 		if (chevauchementX == chevauchementY && chevauchementX == -1.0) {
 			System.out.println("BOOOOM!!!!!!");
-
-			try {
-				this.sleep(1500);
-			} catch (InterruptedException e) {
-				System.out.println("Mode Fantôme");
-				e.printStackTrace();
+			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat());
+			System.out.println(pAv.getAvion().getPv());
+			if (pAv.getAvion().getPv() <= 0) {
+				this.continuer = false;
+				vMaFenetre.finDePartie();
+			} else {
+				try {
+					this.sleep(1500);
+				} catch (InterruptedException e) {
+					System.out.println("Mode Fantôme");
+					e.printStackTrace();
+				}
 			}
-
-		} else {
-			System.out.println();
 		}
+	}
+
+	public boolean isContinuer() {
+		return continuer;
+	}
+
+	public void setContinuer(boolean continuer) {
+		this.continuer = continuer;
 	}
 }

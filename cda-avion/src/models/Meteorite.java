@@ -9,4 +9,12 @@ public abstract class Meteorite extends ObjetVolant {
 
 	private int degat;
 
+	public int getDegat() {
+		return degat;
+	}
+
+	public void setDegat(int degat) {
+		this.degat = degat;
+	}
+
 }
