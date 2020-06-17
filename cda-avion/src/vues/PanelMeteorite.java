@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import models.Meteorite;
+import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
 
 public class PanelMeteorite extends JPanel {
@@ -24,6 +25,11 @@ public class PanelMeteorite extends JPanel {
 	private int positionVerticale;
 	private Random rnd = new Random();
 	private Meteorite meteorite = MeteoriteAleatoire.choixAleatoireMeteorite();
+	private MeteoriteZigZag meteorite2;
+
+	public MeteoriteZigZag getMeteorite2() {
+		return meteorite2;
+	}
 
 	public PanelMeteorite() {
 		this.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
