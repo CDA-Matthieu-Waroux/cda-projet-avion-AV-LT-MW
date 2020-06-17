@@ -20,6 +20,8 @@ public class MyTimer extends Timer {
 	private int choix = 10;
 	private int borne = 0;
 
+	public static final int SCORE_MAX = 999;
+
 	public MyTimer(long vTime, Player pPlayer, PanelMeteorite... pPnM) {
 
 		Random rnd = new Random();
@@ -34,11 +36,11 @@ public class MyTimer extends Timer {
 					meteorite = panelMeteorite.getMeteorite();
 
 					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
-						if (pPlayer.getScore() < 999) {
+						if (pPlayer.getScore() < SCORE_MAX) {
 							pPlayer.setScore(pPlayer.getScore() + meteorite.getScore());
 
-							if (pPlayer.getScore() > 999) {
-								pPlayer.setScore(999);
+							if (pPlayer.getScore() > SCORE_MAX) {
+								pPlayer.setScore(SCORE_MAX);
 							}
 						}
 						System.out.println(pPlayer.getScore());
