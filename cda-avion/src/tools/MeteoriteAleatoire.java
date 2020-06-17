@@ -24,24 +24,16 @@ public class MeteoriteAleatoire {
 			"/ressources/meteoriteIceBerg.png");
 	private static MeteoriteZigZag zigzag = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
 			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
-	private static MeteoriteZigZag zigzag2 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
-			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
-	private static MeteoriteZigZag zigzag3 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
-			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
-	private static MeteoriteZigZag zigzag4 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
-			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
 
 	private static List<Meteorite> listMeteo = new ArrayList<>();
 
 	public static Meteorite choixAleatoireMeteorite() {
-//		listMeteo.add(simple);
-//		listMeteo.add(feu);
-//		listMeteo.add(glace);
-//		listMeteo.add(iceBerg);
+		listMeteo.add(simple);
+		listMeteo.add(feu);
+		listMeteo.add(glace);
+		listMeteo.add(iceBerg);
 		listMeteo.add(zigzag);
-		listMeteo.add(zigzag2);
-		listMeteo.add(zigzag3);
-		listMeteo.add(zigzag4);
+		;
 
 		for (int i = 0; i < NB_RANDOM; i++) {
 

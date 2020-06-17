@@ -7,7 +7,7 @@ public class MeteoriteZigZag extends Meteorite {
 	private int widthMin;
 
 	public MeteoriteZigZag(int pHeight, int pWidth, int pVitesse, String pLienPhoto, int pWidthMin, int pWidhtMAx) {
-		super(pHeight, pWidth, pVitesse, pLienPhoto, 1);
+		super(pHeight, pWidth, pVitesse, pLienPhoto, 1, 5);
 		this.setWidthMax(pWidhtMAx);
 		this.setWidthMin(pWidthMin);
 	}

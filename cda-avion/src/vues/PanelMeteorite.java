@@ -53,13 +53,6 @@ public class PanelMeteorite extends JPanel {
 		positionVerticale = -meteorite.getHeightOJ();
 		positionHorizontale = rnd.nextInt(MaFenetre.LARGEUR - meteorite.getWidthOJ());
 
-		if (meteorite instanceof MeteoriteZigZag) {
-			meteorite2 = ((MeteoriteZigZag) meteorite);
-			meteorite2.setWidthMax(positionHorizontale + 30);
-			meteorite2.setWidthMin(positionHorizontale - 30);
-
-		}
-
 		InputStream img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
 
 		try {
