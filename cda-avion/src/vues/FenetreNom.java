@@ -33,7 +33,7 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setSize(LARGEUR_FENETRE, HAUTEUR_FENETRE);// largeur, hauteur
 		this.setLocation(600, 0);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Saisissez votre nom pour jouer à EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 

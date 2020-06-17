@@ -5,8 +5,7 @@ import vues.FenetreNom;
 public class Test {
 
 	public static void main(String[] args) {
-		new FenetreNom();
-//		new MaFenetre();
+		FenetreNom f1 = new FenetreNom();
 
 	}
 }
