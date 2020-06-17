@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import controllers.MyKeyListener;
+import models.Avion;
 
 public class PanelAvion extends JPanel {
 
@@ -22,9 +23,11 @@ public class PanelAvion extends JPanel {
 	public static final byte HAUTEUR = 80;
 	public static final byte LARGEUR = 80;
 
+	private Avion avion = new Avion(80, 80, 10, "/ressources/VaisseauGayyyyy.png", 5);
+
 	public PanelAvion(PanelCentral pCentral) {
 
-		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/VaisseauGayyyyy.png");
+		InputStream img = PanelCentral.class.getResourceAsStream(avion.getvLienPhoto());
 
 		try {
 			vaisseau = ImageIO.read(img);// avec read, tj ioexception
@@ -38,6 +41,14 @@ public class PanelAvion extends JPanel {
 		this.setOpaque(false);// definir opacity du panel à 0, pour voir le fond
 		// d'écran
 		this.addKeyListener(new MyKeyListener(this));
+	}
+
+	public Avion getAvion() {
+		return avion;
+	}
+
+	public void setAvion(Avion avion) {
+		this.avion = avion;
 	}
 
 	@Override
