@@ -12,28 +12,36 @@ public class MeteoriteZigZag extends Meteorite {
 		this.setWidthMin(pWidthMin);
 	}
 
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public int getCompteur() {
+		return compteur;
+	}
+
+	public void setCompteur(int compteur) {
+		this.compteur = compteur;
+	}
+
+	public MeteoriteZigZag(int pHeight, int pWidth, int pVitesse, String pLienPhoto) {
+		super(pHeight, pWidth, pVitesse, pLienPhoto, 1, 5);
+	}
+
+	public int getAbcisse() {
+		return abcisse;
+	}
+
+	public void setAbcisse(int abcisse) {
+		this.abcisse = abcisse;
+	}
+
 	public int getDeplacement() {
 		return deplacement;
 	}
 
 	public void setDeplacementGauche(int deplacement) {
 		this.deplacement = deplacement;
-	}
-
-	public int getWidthMin() {
-		return widthMin;
-	}
-
-	public void setWidthMin(int widthMin) {
-		this.widthMin = widthMin;
-	}
-
-	public int getWidthMax() {
-		return widthMax;
-	}
-
-	public void setWidthMax(int widthMax) {
-		this.widthMax = widthMax;
 	}
 
 }

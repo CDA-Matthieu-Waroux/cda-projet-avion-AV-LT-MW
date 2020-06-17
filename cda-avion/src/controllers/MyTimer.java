@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import models.Avion;
 import models.Meteorite;
+import models.MeteoriteZigZag;
 import models.Player;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
@@ -63,15 +64,18 @@ public class MyTimer extends Timer {
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 //					if (meteorite instanceof MeteoriteZigZag) {
 
-					// zigZag(panelMeteorite, y, (MeteoriteZigZag) meteorite);
+						// zigZag(panelMeteorite, y, (MeteoriteZigZag) meteorite);
 
 //					} else {
-					panelMeteorite.setLocation(panelMeteorite.getX(), y);
+
 //					}
 
+					}
+					panelMeteorite.setLocation(panelMeteorite.getX(), y);
 				}
 			}
 		}, 0, vTime);
+
 	}
 
 //	private void zigZag(PanelMeteorite vPanelMeteorite, int vY, MeteoriteZigZag meteo) {
