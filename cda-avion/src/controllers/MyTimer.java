@@ -11,12 +11,15 @@ import javax.imageio.ImageIO;
 import models.Meteorite;
 import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
+import tools.MyDeamon;
 import vues.MaFenetre;
 import vues.PanelCentral;
 import vues.PanelMeteorite;
 
 public class MyTimer extends Timer {
 	private static Meteorite meteorite;
+	private int choix = 10;
+	private int borne = 0;
 
 	public MyTimer(long vTime, PanelMeteorite... pPnM) {
 
@@ -27,6 +30,9 @@ public class MyTimer extends Timer {
 
 			@Override
 			public void run() {
+				MyDeamon dmd = new MyDeamon(pPnM);
+				dmd.start();
+
 				for (PanelMeteorite panelMeteorite : pPnM) {
 					meteorite = panelMeteorite.getMeteorite();
 
@@ -38,7 +44,7 @@ public class MyTimer extends Timer {
 
 						try {
 							panelMeteorite.setImgMeteorite(ImageIO.read(img));
-							// avec read, tj ioexception
+
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -47,8 +53,8 @@ public class MyTimer extends Timer {
 					}
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
-						panelMeteorite.setLocation(panelMeteorite.getX(), y);
-						// zigZag(panelMeteorite, y);
+
+						zigZag(panelMeteorite, y, meteorite);
 
 					} else {
 						panelMeteorite.setLocation(panelMeteorite.getX(), y);
@@ -59,15 +65,22 @@ public class MyTimer extends Timer {
 		}, 0, vTime);
 	}
 
-//	private synchronized void zigZag(PanelMeteorite vPanelMeteorite, int vY, Meteorite meteo) {
-//		if (choix == 1) {
-//			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 30, vY);
-//			choix = 2;
-//		} else {
-//			vPanelMeteorite.setLocation(vPanelMeteorite.getX() - 30, vY);
-//			choix = 1;
-//		}
-//
-//	}
+	private void zigZag(PanelMeteorite vPanelMeteorite, int vY, Meteorite meteo) {
+		if (choix == -10) {
+			borne--;
+			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 1, vY);
+			if (borne == choix) {
+				choix = 10;
+			}
+
+		} else {
+			vPanelMeteorite.setLocation(vPanelMeteorite.getX() - 1, vY);
+			borne++;
+			if (borne == choix) {
+				choix = -10;
+			}
+		}
+
+	}
 
 }

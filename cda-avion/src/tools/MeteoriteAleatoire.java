@@ -17,7 +17,7 @@ public class MeteoriteAleatoire {
 	private final static byte VITESSE_LENTE = 1;
 
 	private static MeteoriteSimple simple = new MeteoriteSimple(30, 30, VITESSE_NORMAL, "/ressources/meteorite.png");
-	private static MeteoriteFeu feu = new MeteoriteFeu(40, 40, VITESSE_LENTE, "/ressources/meteoriteFeu.png");
+	private static MeteoriteFeu feu = new MeteoriteFeu(40, 40, VITESSE_LENTE, "/ressources/meteorite.png");
 	private static MeteoriteGlace glace = new MeteoriteGlace(35, 35, VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
 	private static MeteoriteIceBerg iceBerg = new MeteoriteIceBerg(70, 70, VITESSE_NORMAL,
 			"/ressources/meteoriteIceBerg.png");
@@ -27,10 +27,10 @@ public class MeteoriteAleatoire {
 	private static List<Meteorite> listMeteo = new ArrayList<>();
 
 	public static Meteorite choixAleatoireMeteorite() {
-		listMeteo.add(simple);
-		listMeteo.add(feu);
-		listMeteo.add(glace);
-		listMeteo.add(iceBerg);
+//		listMeteo.add(simple);
+//		listMeteo.add(feu);
+//		listMeteo.add(glace);
+//		listMeteo.add(iceBerg);
 		listMeteo.add(zigzag);
 
 		for (int i = 0; i < NB_RANDOM; i++) {
@@ -38,6 +38,6 @@ public class MeteoriteAleatoire {
 			Collections.shuffle(listMeteo);
 		}
 
-		return listMeteo.get(1);
+		return listMeteo.get(0);
 	}
 }

@@ -2,10 +2,14 @@ package models;
 
 public class MeteoriteZigZag extends Meteorite {
 
-	private int deplacement = 30;
+	private int deplacement = 10;
+	private int widthMax;
+	private int widthMin;
 
-	public MeteoriteZigZag(int pHeight, int pWidth, int pVitesse, String pLienPhoto) {
+	public MeteoriteZigZag(int pHeight, int pWidth, int pVitesse, String pLienPhoto, int pWidthMin, int pWidhtMAx) {
 		super(pHeight, pWidth, pVitesse, pLienPhoto, 1);
+		this.widthMax = pWidhtMAx;
+		this.widthMin = pWidthMin;
 	}
 
 	public int getDeplacement() {
