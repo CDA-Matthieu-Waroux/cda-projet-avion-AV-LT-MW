@@ -1,7 +1,12 @@
-/vues/
 /controllers/
 /models/
+<<<<<<< HEAD
 /vues/
 /tools/
 /ressources/
 /com/
+=======
+/com/
+/ressources/
+/vues/
+>>>>>>> loreen
