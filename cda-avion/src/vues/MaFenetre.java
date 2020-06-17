@@ -24,16 +24,16 @@ public class MaFenetre extends JFrame {
 		PanelCentral pnC = new PanelCentral();
 
 		PanelMeteorite pnM1 = new PanelMeteorite();
-		PanelMeteorite pnM2 = new PanelMeteorite();
-		PanelMeteorite pnM3 = new PanelMeteorite();
-		PanelMeteorite pnM4 = new PanelMeteorite();
+		// PanelMeteorite pnM2 = new PanelMeteorite();
+		// PanelMeteorite pnM3 = new PanelMeteorite();
+		// PanelMeteorite pnM4 = new PanelMeteorite();
 		PanelAvion pnA = new PanelAvion(pnC);
 		pnC.add(pnA);
 		pnC.add(pnM1);
-		pnC.add(pnM2);
-		pnC.add(pnM3);
-		pnC.add(pnM4);
-		new MyTimer(TAUX_RAFRAICHESSEMENT, pnM1, pnM2, pnM3, pnM4);
+		// pnC.add(pnM2);
+		// pnC.add(pnM3);
+		// pnC.add(pnM4);
+		new MyTimer(TAUX_RAFRAICHESSEMENT, pnM1);
 		this.add(pnC);
 
 		// this.add(new PanelAvion());

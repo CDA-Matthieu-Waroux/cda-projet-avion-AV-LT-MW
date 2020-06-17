@@ -1,6 +1,4 @@
-/com/
-/controllers/
 /models/
-/vues/
 /tools/
-/ressources/
+/controllers/
+/vues/

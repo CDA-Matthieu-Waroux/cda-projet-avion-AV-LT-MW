@@ -10,6 +10,7 @@ import models.MeteoriteGlace;
 import models.MeteoriteIceBerg;
 import models.MeteoriteSimple;
 import models.MeteoriteZigZag;
+import vues.MaFenetre;
 
 public class MeteoriteAleatoire {
 	private final static int NB_RANDOM = 5;
@@ -22,7 +23,13 @@ public class MeteoriteAleatoire {
 	private static MeteoriteIceBerg iceBerg = new MeteoriteIceBerg(70, 70, VITESSE_NORMAL,
 			"/ressources/meteoriteIceBerg.png");
 	private static MeteoriteZigZag zigzag = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
-			"/ressources/meteoriteZigzag.png");
+			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
+	private static MeteoriteZigZag zigzag2 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
+			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
+	private static MeteoriteZigZag zigzag3 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
+			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
+	private static MeteoriteZigZag zigzag4 = new MeteoriteZigZag(30, 30, VITESSE_LENTE,
+			"/ressources/meteoriteZigzag.png", MaFenetre.LARGEUR - 30, MaFenetre.LARGEUR + 30);
 
 	private static List<Meteorite> listMeteo = new ArrayList<>();
 
@@ -32,12 +39,20 @@ public class MeteoriteAleatoire {
 //		listMeteo.add(glace);
 //		listMeteo.add(iceBerg);
 		listMeteo.add(zigzag);
+		listMeteo.add(zigzag2);
+		listMeteo.add(zigzag3);
+		listMeteo.add(zigzag4);
 
 		for (int i = 0; i < NB_RANDOM; i++) {
 
 			Collections.shuffle(listMeteo);
 		}
+		Meteorite value = listMeteo.get(0);
+		listMeteo.remove(value);
+		return value;
+	}
 
-		return listMeteo.get(0);
+	public static void AddMeteoriteList(Meteorite pMeteo) {
+		listMeteo.add(pMeteo);
 	}
 }

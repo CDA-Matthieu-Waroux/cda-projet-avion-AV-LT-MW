@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 import models.Meteorite;
 import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
-import tools.MyDeamon;
 import vues.MaFenetre;
 import vues.PanelCentral;
 import vues.PanelMeteorite;
@@ -30,8 +29,6 @@ public class MyTimer extends Timer {
 
 			@Override
 			public void run() {
-				MyDeamon dmd = new MyDeamon(pPnM);
-				dmd.start();
 
 				for (PanelMeteorite panelMeteorite : pPnM) {
 					meteorite = panelMeteorite.getMeteorite();
@@ -54,7 +51,7 @@ public class MyTimer extends Timer {
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
 
-						zigZag(panelMeteorite, y, meteorite);
+						zigZag(panelMeteorite, y, (MeteoriteZigZag) meteorite);
 
 					} else {
 						panelMeteorite.setLocation(panelMeteorite.getX(), y);
@@ -65,20 +62,16 @@ public class MyTimer extends Timer {
 		}, 0, vTime);
 	}
 
-	private void zigZag(PanelMeteorite vPanelMeteorite, int vY, Meteorite meteo) {
-		if (choix == -10) {
-			borne--;
-			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 1, vY);
-			if (borne == choix) {
-				choix = 10;
-			}
+	private void zigZag(PanelMeteorite vPanelMeteorite, int vY, MeteoriteZigZag meteo) {
+
+		if (meteo.getDeplacement() > 30) {
+			meteo.setDeplacementGauche(meteo.getDeplacement() - 1);
+			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 3, vY);
 
 		} else {
-			vPanelMeteorite.setLocation(vPanelMeteorite.getX() - 1, vY);
-			borne++;
-			if (borne == choix) {
-				choix = -10;
-			}
+			meteo.setDeplacementGauche(meteo.getDeplacement() + 1);
+			vPanelMeteorite.setLocation(vPanelMeteorite.getX() + 1, vY);
+
 		}
 
 	}

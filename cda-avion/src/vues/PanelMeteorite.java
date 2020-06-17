@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import models.Meteorite;
+import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
 
 public class PanelMeteorite extends JPanel {
@@ -32,6 +33,11 @@ public class PanelMeteorite extends JPanel {
 	private int positionVerticale;
 	private Random rnd = new Random();
 	private Meteorite meteorite = MeteoriteAleatoire.choixAleatoireMeteorite();
+	private MeteoriteZigZag meteorite2;
+
+	public MeteoriteZigZag getMeteorite2() {
+		return meteorite2;
+	}
 
 	public Meteorite getMeteorite() {
 		return meteorite;
@@ -46,6 +52,13 @@ public class PanelMeteorite extends JPanel {
 		this.setOpaque(false);
 		positionVerticale = -meteorite.getHeightOJ();
 		positionHorizontale = rnd.nextInt(MaFenetre.LARGEUR - meteorite.getWidthOJ());
+
+		if (meteorite instanceof MeteoriteZigZag) {
+			meteorite2 = ((MeteoriteZigZag) meteorite);
+			meteorite2.setWidthMax(positionHorizontale + 30);
+			meteorite2.setWidthMin(positionHorizontale - 30);
+
+		}
 
 		InputStream img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
 
