@@ -20,26 +20,10 @@ public class PanelMeteorite extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private BufferedImage imgMeteorite;
 
-	public BufferedImage getImgMeteorite() {
-		return imgMeteorite;
-	}
-
-	public void setImgMeteorite(BufferedImage imgMeteorite) {
-		this.imgMeteorite = imgMeteorite;
-	}
-
 	private int positionHorizontale;
 	private int positionVerticale;
 	private Random rnd = new Random();
 	private Meteorite meteorite = MeteoriteAleatoire.choixAleatoireMeteorite();
-
-	public Meteorite getMeteorite() {
-		return meteorite;
-	}
-
-	public void setMeteorite(Meteorite meteorite) {
-		this.meteorite = meteorite;
-	}
 
 	public PanelMeteorite() {
 		this.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
@@ -67,4 +51,19 @@ public class PanelMeteorite extends JPanel {
 
 	}
 
+	public BufferedImage getImgMeteorite() {
+		return imgMeteorite;
+	}
+
+	public void setImgMeteorite(BufferedImage imgMeteorite) {
+		this.imgMeteorite = imgMeteorite;
+	}
+
+	public Meteorite getMeteorite() {
+		return meteorite;
+	}
+
+	public void setMeteorite(Meteorite meteorite) {
+		this.meteorite = meteorite;
+	}
 }

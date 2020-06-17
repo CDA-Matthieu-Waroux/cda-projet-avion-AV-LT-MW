@@ -60,4 +60,12 @@ public class PanelAvion extends JPanel {
 
 	}
 
+	public BufferedImage getVaisseau() {
+		return vaisseau;
+	}
+
+	public void setVaisseau(BufferedImage vaisseau) {
+		this.vaisseau = vaisseau;
+	}
+
 }
