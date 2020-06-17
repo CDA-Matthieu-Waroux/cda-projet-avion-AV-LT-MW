@@ -19,6 +19,9 @@ public class PanelAvion extends JPanel {
 
 	private BufferedImage vaisseau;
 
+	public static final byte HAUTEUR = 80;
+	public static final byte LARGEUR = 80;
+
 	public PanelAvion(PanelCentral pCentral) {
 
 		InputStream img = PanelCentral.class.getResourceAsStream("/ressources/VaisseauGayyyyy.png");
@@ -28,13 +31,13 @@ public class PanelAvion extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.setSize(80, 80);
-		this.setLocation(320, 620);
+		this.setSize(LARGEUR, HAUTEUR);
+		this.setLocation((MaFenetre.LARGEUR / 2) - LARGEUR, MaFenetre.HAUTEUR - HAUTEUR - 100);
 		this.setIgnoreRepaint(true);
 		this.setFocusable(true);// le focus sera fait sur ce panel !
 		this.setOpaque(false);// definir opacity du panel à 0, pour voir le fond
 		// d'écran
-		this.addKeyListener(new MyKeyListener(this, pCentral));
+		this.addKeyListener(new MyKeyListener(this));
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class PanelAvion extends JPanel {
 
 		super.paintComponent(g);
 
-		g.drawImage(vaisseau, 0, 0, 80, 80, null);// taile de l'image, vaisseau
+		g.drawImage(vaisseau, 0, 0, this.getWidth(), this.getHeight(), null);// taile de l'image, vaisseau
 
 	}
 
