@@ -1,10 +1,6 @@
 package com.main;
 
-<<<<<<< HEAD
-import vues.MaFenetre;
-=======
 import vues.FenetreNom;
->>>>>>> loreen
 
 public class Test {
 
