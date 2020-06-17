@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
+import models.Avion;
 import models.Meteorite;
 import models.Player;
 import tools.MeteoriteAleatoire;
@@ -22,7 +23,7 @@ public class MyTimer extends Timer {
 
 	public static final int SCORE_MAX = 999;
 
-	public MyTimer(long vTime, Player pPlayer, PanelMeteorite... pPnM) {
+	public MyTimer(long vTime, Avion pMyAvion, Player pPlayer, PanelMeteorite... pPnM) {
 
 		Random rnd = new Random();
 		Timer t = new Timer();
@@ -31,7 +32,9 @@ public class MyTimer extends Timer {
 
 			@Override
 			public void run() {
-
+				if (pMyAvion.getPv() <= 0) {
+					this.cancel();
+				}
 				for (PanelMeteorite panelMeteorite : pPnM) {
 					meteorite = panelMeteorite.getMeteorite();
 
