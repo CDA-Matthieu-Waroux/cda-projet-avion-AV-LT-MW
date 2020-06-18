@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 public class PanelFooter extends JPanel {// afficher score, vie , nom
 
+	private static final long serialVersionUID = 1L;
+
 	private JPanel containerScore = new JPanel();
 	private JPanel containerVie = new JPanel();
 	private JPanel affichageNom = new JPanel();

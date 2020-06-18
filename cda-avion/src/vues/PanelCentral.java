@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 
 public class PanelCentral extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private BufferedImage background;
 
 	public PanelCentral() {
