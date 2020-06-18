@@ -1,11 +1,14 @@
 package vues;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -24,6 +27,7 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
+	private ArrayList<String> listScore = new ArrayList<>();
 
 	public MaFenetre() {
 
@@ -80,6 +84,7 @@ public class MaFenetre extends JFrame {
 				e.printStackTrace();
 			}
 		}
+		VerifScore(file);
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 			bw.newLine();
 			bw.write(this.pf.getLabelNom().getText() + " " + dtf.format(LocalDateTime.now()) + " "
@@ -94,9 +99,31 @@ public class MaFenetre extends JFrame {
 		new FenetreGameOver();
 	}
 
-	private boolean VerifScore() {
+	private void VerifScore(File pFile) {
 
-		return true;
+		String text = "";
+
+		try (BufferedReader br = new BufferedReader(new FileReader(pFile))) {
+
+			while ((text = br.readLine()) != null) {
+				listScore.add(text);
+			}
+		} catch (IOException ec) {
+			ec.printStackTrace();
+		}
+		listScore.forEach(x -> {
+			int g = (x.length() - 2);
+
+			String f = x.substring(g);
+
+			g = Integer.parseInt(f);
+			if (g > Integer.parseInt(pf.getLabelScore().getText())) {
+				System.out.println("plus Grand");
+
+			}
+			System.out.println(f);
+		});
+
 	}
 
 }
