@@ -25,7 +25,8 @@ public class FenetreGameOver extends JFrame {
 
 		this.setTitle("Vous avez Perdu !");
 		this.setResizable(false);
-		this.setSize(400, 300);
+		this.setSize(500, 300);
+		this.setLocation(550, 100);
 
 		JButton buttonReplay = new JButton("Go");
 		JButton buttonAffichageDesScores = new JButton("Go");
