@@ -1,6 +1,8 @@
 package vues;
 
 import java.awt.Font;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -61,33 +63,47 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.boutonEnregistrement = new JButton();
 		this.boutonEnregistrement.setText("Get Start!");
 		this.boutonEnregistrement.setBounds(200, 70, 100, 30);
-		this.boutonEnregistrement.addActionListener(new MyActionListener());
+		this.boutonEnregistrement.addActionListener(new MyActionListener(this));
 		containerBouton.add(boutonEnregistrement);
 
 //		this.add(containerBouton);
 		getContentPane().add(this.boutonEnregistrement);
 
+		
+
 		this.setVisible(true);
 	}
 
-	/*
-	 * public void afficherCaseNom() {
-	 * 
-	 * Scanner sc = new Scanner(System.in);
-	 * System.out.println("Saisissez votre nom : "); String nomJoueur =
-	 * sc.nextLine();
-	 * 
-	 * Pattern vPattern = Pattern.compile("[1-9]");
-	 * 
-	 * if (vPattern.matcher(nomJoueur).find()) { System.out.println(nomJoueur +
-	 * " Nom correct "); } else { System.out.println(nomJoueur +
-	 * "Le nom ne doit contenir que des lettres"); }
-	 * 
-	 * if (nomJoueur.length() > 6)
-	 * 
-	 * { System.out.println("Le nom doit contenir 6 caractères maximum"); } else if
-	 * (nomJoueur.length() < 2) {
-	 * System.out.println("Le nom doit contenir au moins 2 caractères"); } else {
-	 * System.out.println("Votre nom est bien enregistré"); } }
-	 */
+	public void afficherCaseNom() {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println();
+		String nomJoueur = sc.nextLine();
+
+		Pattern vPattern = Pattern.compile("[A-Z]");
+
+		if (vPattern.matcher(nomJoueur).find()) {
+
+			System.out.println(nomJoueur + " Nom enregistr�");
+
+		} else {
+
+			System.out.println(nomJoueur + "Le nom ne doit contenir que des lettres");
+		}
+
+		if (nomJoueur.length() > 6)
+
+		{
+			System.out.println("Le nom doit contenir 6 caract�res maximum");
+
+		} else if (nomJoueur.length() < 2) {
+
+			System.out.println("Le nom doit contenir au moins 2 caract�res");
+
+		} else {
+			System.out.println("Votre nom est bien enregistr�");
+		}
+
+	}
+
 }
