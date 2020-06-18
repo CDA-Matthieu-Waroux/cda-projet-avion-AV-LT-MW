@@ -5,6 +5,11 @@ import java.io.InputStream;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import models.Meteorite;
 import tools.MeteoriteAleatoire;
@@ -56,7 +61,18 @@ public class MonThread extends Thread {
 		double chevauchementY = Math.signum((yMet1 - yAv2) * (yMet2 - yAv1));
 
 		if (chevauchementX == chevauchementY && chevauchementX == -1.0) { // Collision avec cette météorite.
-			System.out.println("BOOOOM!!!!!!");
+			try {
+
+				InputStream urlExplosion = MonThread.class.getResourceAsStream("/ressources/sonExplosion.wav");
+				AudioInputStream monExplosion = AudioSystem.getAudioInputStream(urlExplosion);
+				Clip clip = AudioSystem.getClip();
+				clip.open(monExplosion);
+				clip.start();
+
+			} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+				throw new RuntimeException(e);
+			}
+
 			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
 			System.out.println(pAv.getAvion().getPv());
 			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
