@@ -1,8 +1,17 @@
 package tools;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import models.Heineken;
 import models.Meteorite;
@@ -11,6 +20,7 @@ import models.MeteoriteGlace;
 import models.MeteoriteIceBerg;
 import models.MeteoriteSimple;
 import models.MeteoriteZigZag;
+import vues.MonThread;
 
 public class MeteoriteAleatoire {
 	private final static byte NB_RANDOM = 5;
@@ -64,7 +74,7 @@ public class MeteoriteAleatoire {
 			VITESSE_LENTE, "/ressources/meteoriteZigzag.png");
 	private static MeteoriteZigZag zigzag3 = new MeteoriteZigZag(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10,
 			VITESSE_LENTE, "/ressources/meteoriteZigzag.png");
-	private static Heineken heineken = new Heineken(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_RAPIDE,
+	private static Heineken heineken = new Heineken(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_NORMAL,
 			"/ressources/heineken.png");
 
 	private static ArrayList<Meteorite> listMeteo = new ArrayList<>(
@@ -80,6 +90,22 @@ public class MeteoriteAleatoire {
 
 		Meteorite value = listMeteo.get(0);
 		listMeteo.remove(value);
+		if (value instanceof Heineken) {
+			try {
+
+				InputStream urlExplosion = MonThread.class
+						.getResourceAsStream("/ressources/tequila-heineken-pas-ltemps-dniaiser.wav");
+				InputStream bufferedIn = new BufferedInputStream(urlExplosion);
+				AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
+				Clip clip = AudioSystem.getClip();
+				clip.open(monExplosion);
+				clip.start();
+
+			} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+				throw new RuntimeException(e);
+
+			}
+		}
 		return value;
 	}
 
