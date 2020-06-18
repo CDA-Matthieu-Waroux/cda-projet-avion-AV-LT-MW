@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 
 public class PanelFooter extends JPanel {
 
+	private JPanel containerVie = new JPanel();
+	private JPanel containerScore = new JPanel();
+	private JPanel containerNom = new JPanel();
+
 	public PanelFooter() {
 
 		this.setLayout(new GridLayout(3, 3));// 3lignes, 3colonnes
