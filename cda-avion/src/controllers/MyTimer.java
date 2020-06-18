@@ -43,6 +43,7 @@ public class MyTimer extends Timer {
 						if (pPlayer.getScore() < SCORE_MAX) {
 							pPlayer.setScore(pPlayer.getScore() + meteorite.getScore());
 
+							vPanelFooter.getLabelScore().setText("Score : " + pPlayer.getScore());
 							if (pPlayer.getScore() > SCORE_MAX) {
 								pPlayer.setScore(SCORE_MAX);
 							}
@@ -64,6 +65,7 @@ public class MyTimer extends Timer {
 						panelMeteorite.repaint();
 						panelMeteorite.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 					}
+
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
 						int abcisse = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
