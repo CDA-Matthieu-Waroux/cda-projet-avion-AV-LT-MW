@@ -27,6 +27,7 @@ public class MaFenetre extends JFrame {
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 		PanelCentral pnC = new PanelCentral();
+		PanelFooter pf = new PanelFooter();
 		Player myPlayer = new Player();
 		PanelMeteorite pnM1 = new PanelMeteorite();
 		PanelMeteorite pnM2 = new PanelMeteorite();
@@ -34,7 +35,7 @@ public class MaFenetre extends JFrame {
 		PanelMeteorite pnM4 = new PanelMeteorite();
 
 		PanelAvion pnA = new PanelAvion(pnC);
-
+		pnC.add(pf);
 		pnC.add(pnA);
 		pnC.add(pnM1);
 		pnC.add(pnM2);

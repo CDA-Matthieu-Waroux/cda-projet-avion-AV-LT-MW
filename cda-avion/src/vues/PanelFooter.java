@@ -1,30 +1,46 @@
 package vues;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelFooter extends JPanel {// afficher score, vie , nom
+public class PanelFooter extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-
-	private JPanel containerScore = new JPanel();
 	private JPanel containerVie = new JPanel();
-	private JPanel affichageNom = new JPanel();
+	private JPanel containerScore = new JPanel();
+	private JPanel containerNom = new JPanel();
+	private static final long serialVersionUID = 1L;
+	private final static int HAUTEUR_FOOTER = 100;
+	private final static int LARGEUR_FOOTER = 700;
+	private JLabel labelScore = new JLabel("Score :");
+	private JLabel labelNom = new JLabel("Nom :");
+	private JLabel labelVie = new JLabel("Vie :");
 
 	public PanelFooter() {
 
-		/*
-		 * this.setLayout(new GridLayout(3, 3));// 3lignes, 3colonnes JButton bouton1 =
-		 * new JButton("Haut"); JButton bouton2 = new JButton("Bas"); JButton bouton3 =
-		 * new JButton("Gauche"); JButton bouton4 = new JButton("Droite");
-		 * 
-		 * bouton1.setSize(50, 10); bouton2.setSize(50, 10); bouton3.setSize(50, 10);
-		 * bouton4.setSize(50, 10);
-		 * 
-		 * this.add(bouton1, 1, 2); this.add(bouton2, 3, 2); this.add(bouton3, 2, 1);
-		 * this.add(bouton4, 2, 3);
-		 * 
-		 * this.setVisible(true);
-		 */
+		this.setLayout(new GridLayout(1, 3));
+
+		this.setBounds(0, 700, LARGEUR_FOOTER, HAUTEUR_FOOTER);// set size + set location
+
+		this.add(containerScore);
+		containerScore.setBackground(Color.DARK_GRAY);
+		this.add(containerNom);
+		containerNom.setBackground(Color.DARK_GRAY);
+		this.add(containerVie);
+		containerVie.setBackground(Color.DARK_GRAY);
+
+		labelScore.setBounds(50, 0, 150, 50);
+		labelScore.setForeground(Color.black);
+		labelNom.setForeground(Color.black);
+		labelVie.setForeground(Color.black);
+		labelNom.setBounds(50, 0, 150, 50);
+		labelVie.setBounds(50, 0, 150, 50);
+
+		containerNom.add(labelNom);
+		containerScore.add(labelScore);
+		containerVie.add(labelVie);
 
 	}
 
