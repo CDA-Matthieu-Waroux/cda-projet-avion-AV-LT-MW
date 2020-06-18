@@ -44,4 +44,28 @@ public class PanelFooter extends JPanel {
 
 	}
 
+	public JLabel getLabelScore() {
+		return labelScore;
+	}
+
+	public void setLabelScore(JLabel labelScore) {
+		this.labelScore = labelScore;
+	}
+
+	public JLabel getLabelNom() {
+		return labelNom;
+	}
+
+	public void setLabelNom(JLabel labelNom) {
+		this.labelNom = labelNom;
+	}
+
+	public JLabel getLabelVie() {
+		return labelVie;
+	}
+
+	public void setLabelVie(JLabel labelVie) {
+		this.labelVie = labelVie;
+	}
+
 }

@@ -15,6 +15,7 @@ import models.Player;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
 import vues.PanelCentral;
+import vues.PanelFooter;
 import vues.PanelMeteorite;
 
 public class MyTimer extends Timer {
@@ -22,7 +23,7 @@ public class MyTimer extends Timer {
 
 	public static final int SCORE_MAX = 999;
 
-	public MyTimer(long vTime, Avion pMyAvion, Player pPlayer, PanelMeteorite... pPnM) {
+	public MyTimer(long vTime, Avion pMyAvion, Player pPlayer, PanelFooter vPanelFooter, PanelMeteorite... pPnM) {
 
 		Random rnd = new Random();
 		Timer t = new Timer();
