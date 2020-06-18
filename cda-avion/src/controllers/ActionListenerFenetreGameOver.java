@@ -32,7 +32,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		} else if (name.equalsIgnoreCase("Score")) {
 
-			File file = new File("scoring.txt");
+			File file = new File("C://temp/scoring");
 			String text = "";
 			String recup = "";
 			try (BufferedReader br = new BufferedReader(new FileReader(file))) {

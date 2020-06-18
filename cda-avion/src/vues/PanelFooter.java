@@ -37,6 +37,9 @@ public class PanelFooter extends JPanel {
 		labelVie.setForeground(Color.black);
 		labelNom.setBounds(50, 0, 150, 50);
 		labelVie.setBounds(50, 0, 150, 50);
+		labelScore.setForeground(Color.WHITE);
+		labelNom.setForeground(Color.WHITE);
+		labelVie.setForeground(Color.WHITE);
 
 		containerNom.add(labelNom);
 		containerScore.add(labelScore);

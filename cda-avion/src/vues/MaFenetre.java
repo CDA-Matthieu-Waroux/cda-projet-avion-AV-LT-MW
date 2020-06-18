@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JFrame;
 
@@ -68,8 +69,8 @@ public class MaFenetre extends JFrame {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
-
-		File file = new File("scoring.txt");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm:ss");
+		File file = new File("C://temp/scoring");
 
 		if (!file.exists()) {
 
@@ -81,7 +82,8 @@ public class MaFenetre extends JFrame {
 		}
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 			bw.newLine();
-			bw.write(this.pf.getLabelNom().getText() + " " + LocalDateTime.now() + " " + pf.getLabelScore().getText());
+			bw.write(this.pf.getLabelNom().getText() + " " + dtf.format(LocalDateTime.now()) + " "
+					+ pf.getLabelScore().getText());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -90,6 +92,11 @@ public class MaFenetre extends JFrame {
 		this.dispose();
 		this.setVisible(false);
 		new FenetreGameOver();
+	}
+
+	private boolean VerifScore() {
+
+		return true;
 	}
 
 }
