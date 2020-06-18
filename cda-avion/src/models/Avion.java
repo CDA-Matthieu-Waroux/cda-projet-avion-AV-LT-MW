@@ -2,7 +2,7 @@ package models;
 
 public class Avion extends ObjetVolant {
 
-	private static int pv;
+	private int pv;
 
 	public Avion(int pHeight, int pWidth, int pVitesse, String pLienPhoto, int pPv) {
 		super(pHeight, pWidth, pVitesse, pLienPhoto);
