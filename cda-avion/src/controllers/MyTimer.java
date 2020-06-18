@@ -43,6 +43,7 @@ public class MyTimer extends Timer {
 						if (pPlayer.getScore() < SCORE_MAX) {
 							pPlayer.setScore(pPlayer.getScore() + meteorite.getScore());
 
+							vPanelFooter.getLabelScore().setText("Score : " + pPlayer.getScore());
 							if (pPlayer.getScore() > SCORE_MAX) {
 								pPlayer.setScore(SCORE_MAX);
 							}
