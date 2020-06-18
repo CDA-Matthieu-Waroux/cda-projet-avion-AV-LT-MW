@@ -1,7 +1,6 @@
 package vues;
 
 import java.awt.Font;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -20,6 +19,15 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	private JPanel containerNom = new JPanel();
 	private JPanel containerBouton = new JPanel();
 	private JPanel top = new JPanel();
+	private String nomJoueur;
+
+	public String getNomJoueur() {
+		return nomJoueur;
+	}
+
+	public void setNomJoueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
+	}
 
 	private final static int HAUTEUR_FENETRE = 150;
 	private final static int LARGEUR_FENETRE = 500;
@@ -69,22 +77,19 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 //		this.add(containerBouton);
 		getContentPane().add(this.boutonEnregistrement);
 
-		
-
 		this.setVisible(true);
 	}
 
 	public void afficherCaseNom() {
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println();
-		String nomJoueur = sc.nextLine();
+		nomJoueur = jtf1.getText();
+		System.out.println(nomJoueur);
 
-		Pattern vPattern = Pattern.compile("[A-Z]");
+		Pattern vPattern = Pattern.compile("[\\d]");
 
 		if (vPattern.matcher(nomJoueur).find()) {
 
-			System.out.println(nomJoueur + " Nom enregistr�");
+			System.out.println(nomJoueur + " Nom enregistré");
 
 		} else {
 
@@ -94,14 +99,14 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		if (nomJoueur.length() > 6)
 
 		{
-			System.out.println("Le nom doit contenir 6 caract�res maximum");
+			System.out.println("Le nom doit contenir 6 caractères maximum");
 
 		} else if (nomJoueur.length() < 2) {
 
-			System.out.println("Le nom doit contenir au moins 2 caract�res");
+			System.out.println("Le nom doit contenir au moins 2 caractères");
 
 		} else {
-			System.out.println("Votre nom est bien enregistr�");
+			System.out.println("Votre nom est bien enregistré");
 		}
 
 	}
