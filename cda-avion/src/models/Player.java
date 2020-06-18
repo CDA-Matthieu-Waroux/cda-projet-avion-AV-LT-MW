@@ -3,7 +3,7 @@ package models;
 public class Player {
 
 	private String nom;
-	private int score = 998;
+	private int score = 0;
 
 	public String getNom() {
 		return nom;

@@ -28,8 +28,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 		} else if (name.equalsIgnoreCase("Score")) {
 
 		} else if (name.equalsIgnoreCase("Quitter")) {
-			vFenetre.dispose();
-			vFenetre.setVisible(false);
+			System.exit(0);
 
 		}
 	}
