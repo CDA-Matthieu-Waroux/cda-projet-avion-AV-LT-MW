@@ -1,7 +1,6 @@
 package vues;
 
 import java.awt.Font;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -11,7 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controllers.MyActionListener;
+import models.Player;
 
+@SuppressWarnings("serial")
 public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demarragé, le joueur renseigne son nom
 
 	private JLabel label = new JLabel("Saisissez votre nom");
@@ -20,7 +21,8 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	private JPanel containerNom = new JPanel();
 	private JPanel containerBouton = new JPanel();
 	private JPanel top = new JPanel();
-
+	private String nomJoueur;
+	public final static Player MY_PLAYER = new Player();
 	private final static int HAUTEUR_FENETRE = 150;
 	private final static int LARGEUR_FENETRE = 500;
 
@@ -35,7 +37,6 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setSize(LARGEUR_FENETRE, HAUTEUR_FENETRE);// largeur, hauteur
 		this.setLocation(550, 100);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
-
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Saisissez votre nom pour jouer  à EVITATOR D'ASTEROIDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
@@ -69,39 +70,35 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 //		this.add(containerBouton);
 		getContentPane().add(this.boutonEnregistrement);
 
-		
-
 		this.setVisible(true);
 	}
 
 	public void afficherCaseNom() {
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println();
-		String nomJoueur = sc.nextLine();
+		nomJoueur = jtf1.getText();
+		Pattern vPattern = Pattern.compile("^[a-zA-Z]+$");
+		System.out.println(nomJoueur);
 
-		Pattern vPattern = Pattern.compile("[A-Z]");
+		if (vPattern.matcher(nomJoueur).matches()) {
+			if (nomJoueur.length() > 6)
 
-		if (vPattern.matcher(nomJoueur).find()) {
+			{
+				System.out.println("Le nom doit contenir 6 caract�res maximum");
 
-			System.out.println(nomJoueur + " Nom enregistr�");
+			} else if (nomJoueur.length() < 2) {
 
-		} else {
+				System.out.println("Le nom doit contenir au moins 2 caract�res");
 
-			System.out.println(nomJoueur + "Le nom ne doit contenir que des lettres");
-		}
-
-		if (nomJoueur.length() > 6)
-
-		{
-			System.out.println("Le nom doit contenir 6 caract�res maximum");
-
-		} else if (nomJoueur.length() < 2) {
-
-			System.out.println("Le nom doit contenir au moins 2 caract�res");
+			} else {
+				System.out.println("Votre nom est bien enregistr�");
+				MY_PLAYER.setNom(nomJoueur);
+				this.setVisible(false);
+				new MaFenetre();
+			}
 
 		} else {
-			System.out.println("Votre nom est bien enregistr�");
+
+			System.out.println(nomJoueur + ". Le nom ne doit contenir que des lettres");
 		}
 
 	}
