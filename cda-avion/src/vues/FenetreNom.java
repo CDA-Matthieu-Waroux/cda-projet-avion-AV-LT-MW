@@ -37,7 +37,7 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setLocation(600, 0);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Saisissez votre nom pour jouer à EVITATOR D'ASTEROÏDES 3000");
+		this.setTitle("Saisissez votre nom pour jouer � EVITATOR D'ASTEROIDES 3000");
 		this.setLayout(new BorderLayout());// definition du layout pour la fenetre
 
 		containerNom.setBackground(Color.GRAY);
@@ -73,28 +73,31 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setVisible(true);
 	}
 
-//		// public void afficherCaseNom() {
-//
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Saisissez votre nom : ");
-//		String nomJoueur = sc.nextLine();
-//
-//		Pattern vPattern = Pattern.compile("[1-9]");
-//
-//		if (vPattern.matcher(nomJoueur).find()) {
-//			System.out.println(nomJoueur + " Nom correct ");
-//		} else {
-//			System.out.println(nomJoueur + "Le nom ne doit contenir que des lettres");
-//		}
-//
-//		if (nomJoueur.length() > 6)
-//
-//		{
-//			System.out.println("Le nom doit contenir 6 caractères maximum");
-//		} else if (nomJoueur.length() < 2) {
-//			System.out.println("Le nom doit contenir au moins 2 caractères");
-//		} else {
-//			System.out.println("Votre nom est bien enregistré");
-//		}
-//	}
+	
+	
+	
+		public void afficherCaseNom() {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisissez votre nom : ");
+		String nomJoueur = sc.nextLine();
+
+		Pattern vPattern = Pattern.compile("[1-9]");
+
+		if (vPattern.matcher(nomJoueur).find()) {
+			System.out.println(nomJoueur + " Nom correct ");
+		} else {
+			System.out.println(nomJoueur + "Le nom ne doit contenir que des lettres");
+		}
+
+		if (nomJoueur.length() > 6)
+
+		{
+			System.out.println("Le nom doit contenir 6 caractères maximum");
+		} else if (nomJoueur.length() < 2) {
+			System.out.println("Le nom doit contenir au moins 2 caractères");
+		} else {
+			System.out.println("Votre nom est bien enregistré");
+		}
+	}
 }
