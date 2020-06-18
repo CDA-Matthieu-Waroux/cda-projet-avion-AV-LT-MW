@@ -48,7 +48,6 @@ public class MyTimer extends Timer {
 								pPlayer.setScore(SCORE_MAX);
 							}
 						}
-						System.out.println(pPlayer.getScore());
 
 						MeteoriteAleatoire.AddMeteoriteList(meteorite);
 						panelMeteorite.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
