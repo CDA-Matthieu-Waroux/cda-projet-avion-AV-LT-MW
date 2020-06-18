@@ -47,6 +47,8 @@ public class MyTimer extends Timer {
 							}
 						}
 						System.out.println(pPlayer.getScore());
+
+						MeteoriteAleatoire.AddMeteoriteList(meteorite);
 						panelMeteorite.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
 						meteorite = panelMeteorite.getMeteorite();
 						panelMeteorite.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
@@ -65,12 +67,6 @@ public class MyTimer extends Timer {
 					if (meteorite instanceof MeteoriteZigZag) {
 						int abcisse = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
 						panelMeteorite.setLocation(abcisse, y + 2);
-
-						// zigZag(panelMeteorite, y, (MeteoriteZigZag) meteorite);
-
-//					} else {
-
-//					}
 
 					}
 					panelMeteorite.setLocation(panelMeteorite.getX(), y);
