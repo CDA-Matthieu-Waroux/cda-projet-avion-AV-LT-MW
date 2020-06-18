@@ -1,5 +1,6 @@
 package vues;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
@@ -64,7 +65,8 @@ public class MonThread extends Thread {
 			try {
 
 				InputStream urlExplosion = MonThread.class.getResourceAsStream("/ressources/sonExplosion.wav");
-				AudioInputStream monExplosion = AudioSystem.getAudioInputStream(urlExplosion);
+				InputStream bufferedIn = new BufferedInputStream(urlExplosion);
+				AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
 				Clip clip = AudioSystem.getClip();
 				clip.open(monExplosion);
 				clip.start();
