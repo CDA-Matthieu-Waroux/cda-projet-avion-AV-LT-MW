@@ -1,5 +1,11 @@
 package vues;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
 import javax.swing.JFrame;
 
 import controllers.MyTimer;
@@ -17,6 +23,7 @@ public class MaFenetre extends JFrame {
 	private final MonThread t2;
 	private final MonThread t3;
 	private final MonThread t4;
+	private final PanelFooter pf;
 
 	public MaFenetre() {
 
@@ -27,7 +34,7 @@ public class MaFenetre extends JFrame {
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 		PanelCentral pnC = new PanelCentral();
-		PanelFooter pf = new PanelFooter();
+		pf = new PanelFooter();
 		Player myPlayer = new Player();
 		PanelMeteorite pnM1 = new PanelMeteorite();
 		PanelMeteorite pnM2 = new PanelMeteorite();
@@ -58,10 +65,30 @@ public class MaFenetre extends JFrame {
 	}
 
 	public void finDePartie() {
+
 		t1.setContinuer(false);
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
+
+		File file = new File("scoring.txt");
+
+		if (!file.exists()) {
+
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+			bw.newLine();
+			bw.write(this.pf.getLabelNom().getText() + " " + LocalDateTime.now() + " " + pf.getLabelScore().getText());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		this.dispose();
 		this.setVisible(false);
 		new FenetreGameOver();
