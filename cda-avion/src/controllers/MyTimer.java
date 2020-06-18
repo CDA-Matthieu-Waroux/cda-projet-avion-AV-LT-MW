@@ -65,6 +65,7 @@ public class MyTimer extends Timer {
 						panelMeteorite.repaint();
 						panelMeteorite.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 					}
+
 					int y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
 						int abcisse = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
