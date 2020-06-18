@@ -15,21 +15,21 @@ public class PanelFooter extends JPanel {
 	private final static int HAUTEUR_FOOTER = 100;
 	private final static int LARGEUR_FOOTER = 700;
 	private JLabel labelScore = new JLabel("Score :");
-	private JLabel labelNom = new JLabel("Nom :");
-	private JLabel labelVie = new JLabel("Vie :");
+	private JLabel labelNom = new JLabel("Nom : ");
+	private JLabel labelVie = new JLabel("Vie : 5");
 
-	public PanelFooter() {
-
+	public PanelFooter(String nom) {
+		this.labelNom.setText("Joueur : " + nom);
 		this.setLayout(new GridLayout(1, 3));
 
 		this.setBounds(0, 700, LARGEUR_FOOTER, HAUTEUR_FOOTER);// set size + set location
 
 		this.add(containerScore);
-		containerScore.setBackground(Color.DARK_GRAY);
+		containerScore.setBackground(Color.GRAY);
 		this.add(containerNom);
-		containerNom.setBackground(Color.DARK_GRAY);
+		containerNom.setBackground(Color.GRAY);
 		this.add(containerVie);
-		containerVie.setBackground(Color.DARK_GRAY);
+		containerVie.setBackground(Color.GRAY);
 
 		labelScore.setBounds(50, 0, 150, 50);
 		labelScore.setForeground(Color.black);

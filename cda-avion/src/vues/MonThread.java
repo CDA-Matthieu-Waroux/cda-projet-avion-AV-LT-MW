@@ -21,11 +21,13 @@ public class MonThread extends Thread {
 	private PanelAvion vPnA;
 	private PanelMeteorite vPnMe;
 	private MaFenetre vMaFenetre;
+	private PanelFooter vPf;
 
-	public MonThread(PanelAvion pnA, PanelMeteorite pnMe, MaFenetre pFenetre) {
+	public MonThread(PanelAvion pnA, PanelMeteorite pnMe, MaFenetre pFenetre, PanelFooter pPf) {
 		this.vPnA = pnA;
 		this.vPnMe = pnMe;
 		this.vMaFenetre = pFenetre;
+		this.vPf = pPf;
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class MonThread extends Thread {
 			}
 
 			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
-			System.out.println(pAv.getAvion().getPv());
+			vPf.getLabelVie().setText("Vie : " + pAv.getAvion().getPv());
 			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
 				this.continuer = false;
 				vMaFenetre.finDePartie();
