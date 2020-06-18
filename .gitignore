@@ -16,4 +16,7 @@ cda-avion/\.classpath
 cda-avion/\.project
 
 cda-avion/\.settings/
+
+
+cda-avion/\bin/
 .metadata/
