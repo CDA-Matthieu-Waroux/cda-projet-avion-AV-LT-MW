@@ -73,6 +73,7 @@ public class MyTimer extends Timer {
 				}
 			}
 		}, 0, vTime);
+//		t.cancel();
 
 	}
 
