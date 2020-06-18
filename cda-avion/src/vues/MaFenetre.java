@@ -3,7 +3,6 @@ package vues;
 import javax.swing.JFrame;
 
 import controllers.MyTimer;
-import models.Player;
 
 public class MaFenetre extends JFrame {
 
@@ -17,6 +16,7 @@ public class MaFenetre extends JFrame {
 	private final MonThread t2;
 	private final MonThread t3;
 	private final MonThread t4;
+	private PanelFooter pf;
 
 	public MaFenetre() {
 
@@ -27,8 +27,8 @@ public class MaFenetre extends JFrame {
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 		PanelCentral pnC = new PanelCentral();
-		PanelFooter pf = new PanelFooter();
-		Player myPlayer = new Player();
+		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
+
 		PanelMeteorite pnM1 = new PanelMeteorite();
 		PanelMeteorite pnM2 = new PanelMeteorite();
 		PanelMeteorite pnM3 = new PanelMeteorite();
@@ -41,20 +41,19 @@ public class MaFenetre extends JFrame {
 		pnC.add(pnM2);
 		pnC.add(pnM3);
 		pnC.add(pnM4);
-		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), myPlayer, pf, pnM1, pnM2, pnM3, pnM4);
+		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), FenetreNom.MY_PLAYER, pf, pnM1, pnM2, pnM3, pnM4);
 		this.add(pnC);
 
 		this.setVisible(true);// tj en dernier mais avant le démarrage des threads!
-		t1 = new MonThread(pnA, pnM1, this);
-		t2 = new MonThread(pnA, pnM2, this);
-		t3 = new MonThread(pnA, pnM3, this);
-		t4 = new MonThread(pnA, pnM4, this);
+		t1 = new MonThread(pnA, pnM1, this, pf);
+		t2 = new MonThread(pnA, pnM2, this, pf);
+		t3 = new MonThread(pnA, pnM3, this, pf);
+		t4 = new MonThread(pnA, pnM4, this, pf);
 
 		t1.start();
 		t2.start();
 		t3.start();
 		t4.start();
-
 	}
 
 	public void finDePartie() {

@@ -7,10 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controllers.MyActionListener;
+import models.Player;
 
+@SuppressWarnings("serial")
 public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demarragé, le joueur renseigne son nom
 
 	private JLabel label = new JLabel("Saisissez votre nom");
@@ -29,6 +32,8 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.nomJoueur = nomJoueur;
 	}
 
+	public final static Player MY_PLAYER = new Player();
+
 	private final static int HAUTEUR_FENETRE = 150;
 	private final static int LARGEUR_FENETRE = 500;
 
@@ -43,7 +48,6 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		this.setSize(LARGEUR_FENETRE, HAUTEUR_FENETRE);// largeur, hauteur
 		this.setLocation(550, 100);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
-
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Saisissez votre nom pour jouer  à EVITATOR D'ASTEROIDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
@@ -83,32 +87,29 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	public void afficherCaseNom() {
 
 		nomJoueur = jtf1.getText();
-		System.out.println(nomJoueur);
 
-		Pattern vPattern = Pattern.compile("[\\d]");
+		Pattern vPattern = Pattern.compile("^[a-zA-Z]+$");
 
-		if (vPattern.matcher(nomJoueur).find()) {
+		if (vPattern.matcher(nomJoueur).matches()) {
+			if (nomJoueur.length() > 6) {
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 6 caractères maximum");
+				jtf1.setText("");
 
-			System.out.println(nomJoueur + " Nom enregistré");
+			} else if (nomJoueur.length() < 3) {
 
-		} else {
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 3 caractères minimum");
+				jtf1.setText("");
 
-			System.out.println(nomJoueur + "Le nom ne doit contenir que des lettres");
-		}
-
-		if (nomJoueur.length() > 6)
-
-		{
-			System.out.println("Le nom doit contenir 6 caractères maximum");
-
-		} else if (nomJoueur.length() < 2) {
-
-			System.out.println("Le nom doit contenir au moins 2 caractères");
+			} else {
+				MY_PLAYER.setNom(nomJoueur);
+				this.dispose();
+				this.setVisible(false);
+				new MaFenetre();
+			}
 
 		} else {
-			System.out.println("Votre nom est bien enregistré");
+			JOptionPane.showMessageDialog(this, " Le nom ne doit contenir que des lettres");
+			jtf1.setText("");
 		}
-
 	}
-
 }

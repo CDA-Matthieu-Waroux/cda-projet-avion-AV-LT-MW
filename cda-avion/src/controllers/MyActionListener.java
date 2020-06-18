@@ -15,6 +15,7 @@ public class MyActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
 		fNom.afficherCaseNom();
 	}
 
