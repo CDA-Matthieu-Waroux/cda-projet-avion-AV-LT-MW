@@ -41,7 +41,7 @@ public class MaFenetre extends JFrame {
 		pnC.add(pnM2);
 		pnC.add(pnM3);
 		pnC.add(pnM4);
-		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), myPlayer, pnM1, pnM2, pnM3, pnM4);
+		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), myPlayer, pf, pnM1, pnM2, pnM3, pnM4);
 		this.add(pnC);
 
 		this.setVisible(true);// tj en dernier mais avant le démarrage des threads!
