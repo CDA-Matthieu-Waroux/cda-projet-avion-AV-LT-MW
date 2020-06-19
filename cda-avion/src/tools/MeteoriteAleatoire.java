@@ -112,4 +112,19 @@ public class MeteoriteAleatoire {
 	public static void AddMeteoriteList(Meteorite pMeteo) {
 		listMeteo.add(pMeteo);
 	}
+
+	public static void RafraichirListe() {
+		listMeteo = new ArrayList<>(
+				Arrays.asList(zigzag, zigzag1, zigzag2, zigzag3, iceBerg, iceBerg1, iceBerg2, iceBerg3, glace, glace1,
+						glace2, glace3, feu, feu1, feu2, feu3, simple, simple1, simple2, simple3, heineken));
+	}
+
+	public static ArrayList<Meteorite> getListMeteo() {
+		return listMeteo;
+	}
+
+	public static void setListMeteo(ArrayList<Meteorite> listMeteo) {
+		MeteoriteAleatoire.listMeteo = listMeteo;
+	}
+
 }
