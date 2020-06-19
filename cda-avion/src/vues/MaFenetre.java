@@ -62,7 +62,7 @@ public class MaFenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
-		PanelCentral pnC = new PanelCentral();
+		pnC = new PanelCentral();
 		pf = new PanelFooter(MY_PLAYER.getNom());
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
