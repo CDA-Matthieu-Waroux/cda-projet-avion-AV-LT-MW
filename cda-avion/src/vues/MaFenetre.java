@@ -36,6 +36,7 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
+	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
 
 	public static List<String> getListScore() {
@@ -59,7 +60,7 @@ public class MaFenetre extends JFrame {
 			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/Cascade.wav");
 			InputStream bufferedIn = new BufferedInputStream(urlMusique);
 			AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
-			Clip clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();
 			clip.open(monExplosion);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
@@ -141,7 +142,6 @@ public class MaFenetre extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		this.dispose();
 		this.setVisible(false);
 		new FenetreGameOver();
@@ -196,4 +196,7 @@ public class MaFenetre extends JFrame {
 		}
 	}
 
+	public static Clip getClip() {
+		return clip;
+	}
 }
