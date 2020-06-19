@@ -28,8 +28,10 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 		String name = ((JButton) e.getSource()).getName();
 
 		if (name.equalsIgnoreCase("Replay")) {
+
 			vFenetre.dispose();
 			MeteoriteAleatoire.RafraichirListe();
+			MaFenetre.getClip().close();
 			new MaFenetre();
 
 		} else if (name.equalsIgnoreCase("Score")) {
@@ -53,17 +55,11 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		} else if (name.equalsIgnoreCase("Crédits")) {
 
-			File file = new File("credit.txt");
-			String text = "";
-			String recup = "";
-			try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
-				while ((text = br.readLine()) != null) {
-					recup += text + "\n";
-				}
-			} catch (IOException ec) {
-				ec.printStackTrace();
-			}
+			String recup = "************** DEVELOPPEURS **************** \n" + " Loreen TOURON \n"
+					+ " Matthieu WAROUX \n" + " Aurélien VANNIER \n" + "************* MUSIQUE ************ \n"
+					+ "Titre:  Cascade, Auteur: Kubbi, \n"
+					+ "Licence: https://creativecommons.org/licenses/by-sa/3.0/deed.fr, \n"
+					+ "Téléchargement (8MB): https://auboutdufil.com/?id=485";
 
 			JOptionPane.showMessageDialog(vFenetre, recup);
 
