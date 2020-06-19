@@ -1,15 +1,22 @@
 package vues;
 
 import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 import controllers.MyTimer;
@@ -44,6 +51,18 @@ public class MaFenetre extends JFrame {
 		this.setLayout(null);// definition du layout pour la fenetre
 		PanelCentral pnC = new PanelCentral();
 		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
+
+		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
+			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/5Keer.wav");
+			InputStream bufferedIn = new BufferedInputStream(urlMusique);
+			AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
+			Clip clip = AudioSystem.getClip();
+			clip.open(monExplosion);
+			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+			throw new RuntimeException(e);
+		}
 
 		PanelMeteorite pnM1 = new PanelMeteorite();
 		PanelMeteorite pnM2 = new PanelMeteorite();
