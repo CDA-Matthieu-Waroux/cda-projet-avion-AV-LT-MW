@@ -12,6 +12,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import models.Heineken;
 import models.Meteorite;
 import tools.MeteoriteAleatoire;
 
@@ -64,17 +65,19 @@ public class MonThread extends Thread {
 		double chevauchementY = Math.signum((yMet1 - yAv2) * (yMet2 - yAv1));
 
 		if (chevauchementX == chevauchementY && chevauchementX == -1.0) { // Collision avec cette météorite.
-			try {
 
-				InputStream urlExplosion = MonThread.class.getResourceAsStream("/ressources/sonExplosion.wav");
-				InputStream bufferedIn = new BufferedInputStream(urlExplosion);
-				AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
-				Clip clip = AudioSystem.getClip();
-				clip.open(monExplosion);
-				clip.start();
+			if (!(pMe.getMeteorite() instanceof Heineken)) { // ajoute le son d'explosion
+				try {
+					InputStream urlExplosion = MonThread.class.getResourceAsStream("/ressources/sonExplosion.wav");
+					InputStream bufferedIn = new BufferedInputStream(urlExplosion);
+					AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
+					Clip clip = AudioSystem.getClip();
+					clip.open(monExplosion);
+					clip.start();
 
-			} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-				throw new RuntimeException(e);
+				} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
 
 			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
@@ -84,6 +87,7 @@ public class MonThread extends Thread {
 				vMaFenetre.finDePartie();
 
 			} else {
+
 				try { // Ajout d'une image d'explosion et empêche de subir les dégats de la même
 						// météorite
 
@@ -102,30 +106,32 @@ public class MonThread extends Thread {
 					Random rnd = new Random();
 					pMe.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 
-					pAv.getAvion().setvLienPhoto("/ressources/explosion.png");
+					if (!(pMe.getMeteorite() instanceof Heineken)) {
+						pAv.getAvion().setvLienPhoto("/ressources/explosion.png");
 
-					InputStream img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
+						InputStream img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
 
-					try {
-						pAv.setVaisseau(ImageIO.read(img));
-						// avec read, tj ioexception
-					} catch (IOException e) {
-						e.printStackTrace();
+						try {
+							pAv.setVaisseau(ImageIO.read(img));
+							// avec read, tj ioexception
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						pAv.repaint();
+						Thread.sleep(500);
+						pAv.getAvion().setvLienPhoto("/ressources/VaisseauGayyyyy.png");
+						img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
+
+						try {
+							pAv.setVaisseau(ImageIO.read(img));
+							Thread.sleep(1000);
+							// avec read, tj ioexception
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+						pAv.repaint();
 					}
-					pAv.repaint();
-					Thread.sleep(500);
-					pAv.getAvion().setvLienPhoto("/ressources/VaisseauGayyyyy.png");
-					img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
-
-					try {
-						pAv.setVaisseau(ImageIO.read(img));
-						Thread.sleep(1000);
-						// avec read, tj ioexception
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
-					pAv.repaint();
 				} catch (InterruptedException e) {
 					System.out.println("Mode Fantôme");
 					e.printStackTrace();
