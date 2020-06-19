@@ -39,6 +39,13 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
+	private final PanelMeteorite pnM1;
+	private final PanelMeteorite pnM2;
+	private final PanelMeteorite pnM3;
+	private final PanelMeteorite pnM4;
+	private final PanelCentral pnC;
+	private final PanelAvion pnA;
+
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
 	public final static Player MY_PLAYER = new Player();
@@ -72,12 +79,12 @@ public class MaFenetre extends JFrame {
 			throw new RuntimeException(e);
 		}
 
-		PanelMeteorite pnM1 = new PanelMeteorite();
-		PanelMeteorite pnM2 = new PanelMeteorite();
-		PanelMeteorite pnM3 = new PanelMeteorite();
-		PanelMeteorite pnM4 = new PanelMeteorite();
+		pnM1 = new PanelMeteorite();
+		pnM2 = new PanelMeteorite();
+		pnM3 = new PanelMeteorite();
+		pnM4 = new PanelMeteorite();
 
-		PanelAvion pnA = new PanelAvion(pnC);
+		pnA = new PanelAvion(pnC);
 		pnC.add(pf);
 		pnC.add(pnA);
 		pnC.add(pnM1);
@@ -110,24 +117,29 @@ public class MaFenetre extends JFrame {
 		file.mkdir();
 		file = new File("C://temp/scoring");
 
-		if (!file.exists()) {
+		try {
+			if (!file.createNewFile()) {
+				try {
+					file.createNewFile();
+					verifScore(file);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else
 
-			try {
-				file.createNewFile();
-				VerifScore(file);
-			} catch (IOException e) {
-				e.printStackTrace();
+			{
+				verifScore(file);
+
+				try {
+					file.delete();
+					file.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
-		} else {
-			VerifScore(file);
-
-			try {
-				file.delete();
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
@@ -152,7 +164,7 @@ public class MaFenetre extends JFrame {
 		new FenetreGameOver();
 	}
 
-	private void VerifScore(File pFile) {
+	private void verifScore(File pFile) {
 		System.out.println(listScore);
 		listScore.clear();
 

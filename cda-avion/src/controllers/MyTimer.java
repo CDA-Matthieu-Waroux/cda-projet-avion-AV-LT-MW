@@ -19,13 +19,14 @@ import vues.PanelMeteorite;
 
 public class MyTimer extends Timer {
 	private static Meteorite meteorite;
-
+	private Timer t = new Timer();
+	private Random rnd = new Random();
+	private InputStream img;
+	private int y;
+	private int x;
 	public static final int SCORE_MAX = 999;
 
 	public MyTimer(long vTime, Avion pMyAvion, PanelFooter vPanelFooter, PanelMeteorite... pPnM) {
-
-		Random rnd = new Random();
-		Timer t = new Timer();
 
 		t.schedule(new TimerTask() {
 
@@ -36,6 +37,7 @@ public class MyTimer extends Timer {
 					this.cancel();
 				}
 				for (PanelMeteorite panelMeteorite : pPnM) {
+
 					meteorite = panelMeteorite.getMeteorite();
 
 					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
@@ -52,7 +54,7 @@ public class MyTimer extends Timer {
 						panelMeteorite.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
 						meteorite = panelMeteorite.getMeteorite();
 						panelMeteorite.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
-						InputStream img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
+						img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
 
 						try {
 							panelMeteorite.setImgMeteorite(ImageIO.read(img));
@@ -64,10 +66,10 @@ public class MyTimer extends Timer {
 						panelMeteorite.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 					}
 
-					int y = panelMeteorite.getY() + meteorite.getVitesse();
+					y = panelMeteorite.getY() + meteorite.getVitesse();
 					if (meteorite instanceof MeteoriteZigZag) {
-						int abcisse = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
-						panelMeteorite.setLocation(abcisse, y + 2);
+						x = zigZag((MeteoriteZigZag) meteorite, panelMeteorite);
+						panelMeteorite.setLocation(x, y + 2);
 
 					}
 					panelMeteorite.setLocation(panelMeteorite.getX(), y);

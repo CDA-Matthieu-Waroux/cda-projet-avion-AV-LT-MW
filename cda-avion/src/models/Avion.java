@@ -14,9 +14,6 @@ public class Avion extends ObjetVolant {
 	}
 
 	public void setPv(int pv) {
-		if (pv <= 0) {
-			System.out.println("GAME-OVER");
-		}
 		this.pv = pv;
 	}
 }
