@@ -23,9 +23,9 @@ public class FenetreGameOver extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public FenetreGameOver() {
+	public FenetreGameOver(MaFenetre pFenetre) {
 
-		listener = new ActionListenerFenetreGameOver(this);
+		listener = new ActionListenerFenetreGameOver(this, pFenetre);
 		JPanel pn = new JPanel();
 
 		pn.setSize(this.getWidth(), this.getHeight());

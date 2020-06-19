@@ -69,6 +69,7 @@ public class MonThread extends Thread {
 			if (!(pMe.getMeteorite() instanceof Heineken)) { // ajoute le son d'explosion
 				try {
 					InputStream urlExplosion = MonThread.class.getResourceAsStream("/ressources/sonExplosion.wav");
+
 					InputStream bufferedIn = new BufferedInputStream(urlExplosion);
 					AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
 					Clip clip = AudioSystem.getClip();
@@ -92,22 +93,8 @@ public class MonThread extends Thread {
 				try { // Ajout d'une image d'explosion et empêche de subir les dégats de la même
 						// météorite
 
-					pMe.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
-					Meteorite meteorite = pMe.getMeteorite();
-					pMe.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
-					InputStream imphotoMeteor = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
-
-					try {
-						pMe.setImgMeteorite(ImageIO.read(imphotoMeteor));
-						// avec read, tj ioexception
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					pMe.repaint();
-					Random rnd = new Random();
-					pMe.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
-
 					if (!(pMe.getMeteorite() instanceof Heineken)) {
+
 						pAv.getAvion().setvLienPhoto("/ressources/explosion.png");
 
 						InputStream img = PanelCentral.class.getResourceAsStream(pAv.getAvion().getvLienPhoto());
@@ -133,6 +120,20 @@ public class MonThread extends Thread {
 
 						pAv.repaint();
 					}
+					pMe.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
+					Meteorite meteorite = pMe.getMeteorite();
+					pMe.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
+					InputStream imphotoMeteor = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
+
+					try {
+						pMe.setImgMeteorite(ImageIO.read(imphotoMeteor));
+						// avec read, tj ioexception
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					pMe.repaint();
+					Random rnd = new Random();
+					pMe.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 				} catch (InterruptedException e) {
 					System.out.println("Mode Fantôme");
 					e.printStackTrace();

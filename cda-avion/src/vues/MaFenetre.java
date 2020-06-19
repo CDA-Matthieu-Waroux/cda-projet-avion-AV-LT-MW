@@ -31,10 +31,10 @@ public class MaFenetre extends JFrame {
 	public static final int POSITION_X = 400;
 	public static final int POSITION_Y = 0;
 	public static final int LARGEUR = 700;
-	private final MonThread t1;
-	private final MonThread t2;
-	private final MonThread t3;
-	private final MonThread t4;
+	private MonThread t1;
+	private MonThread t2;
+	private MonThread t3;
+	private MonThread t4;
 	private final PanelFooter pf;
 	private final PanelMeteorite pnM1;
 	private final PanelMeteorite pnM2;
@@ -66,8 +66,7 @@ public class MaFenetre extends JFrame {
 			clip.open(monExplosion);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
-			clip.start();
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
+
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -84,19 +83,13 @@ public class MaFenetre extends JFrame {
 		pnC.add(pnM2);
 		pnC.add(pnM3);
 		pnC.add(pnM4);
-		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), pf, pnM1, pnM2, pnM3, pnM4);
+
 		this.add(pnC);
 
 		this.setVisible(true);// tj en dernier mais avant le démarrage des threads!
-		t1 = new MonThread(pnA, pnM1, this, pf);
-		t2 = new MonThread(pnA, pnM2, this, pf);
-		t3 = new MonThread(pnA, pnM3, this, pf);
-		t4 = new MonThread(pnA, pnM4, this, pf);
 
-		t1.start();
-		t2.start();
-		t3.start();
-		t4.start();
+		startGame();
+
 	}
 
 	public void finDePartie() {
@@ -151,10 +144,10 @@ public class MaFenetre extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.dispose();
+
 		clip.close();
-		this.setVisible(false);
-		new FenetreGameOver();
+		// this.setVisible(false);
+		new FenetreGameOver(this);
 	}
 
 	private void verifScore(File pFile) {
@@ -204,6 +197,21 @@ public class MaFenetre extends JFrame {
 		} else {
 			listScore.add(text);
 		}
+	}
+
+	public void startGame() {
+		t1 = new MonThread(pnA, pnM1, this, pf);
+		t2 = new MonThread(pnA, pnM2, this, pf);
+		t3 = new MonThread(pnA, pnM3, this, pf);
+		t4 = new MonThread(pnA, pnM4, this, pf);
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), pf, pnM1, pnM2, pnM3, pnM4);
+		clip.start();
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
+
 	}
 
 	public static Clip getClip() {

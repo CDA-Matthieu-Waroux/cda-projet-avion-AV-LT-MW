@@ -13,23 +13,23 @@ import vues.MaFenetre;
 public class ActionListenerFenetreGameOver implements ActionListener {
 
 	private FenetreGameOver vFenetre;
+	private MaFenetre vFenetre2;
 	private static String recup = "";
 	private String name = "";
 
-	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre) {
+	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre, MaFenetre pFenetre2) {
 		this.vFenetre = pFenetre;
+		this.vFenetre2 = pFenetre2;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("click");
 		name = ((JButton) e.getSource()).getName();
 
 		if (name.equalsIgnoreCase("Replay")) {
-
-			vFenetre.dispose();
+			vFenetre.setVisible(false);
 			MeteoriteAleatoire.RafraichirListe();
-			new MaFenetre();
+			vFenetre2.startGame();
 
 		} else if (name.equalsIgnoreCase("Score")) {
 
