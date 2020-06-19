@@ -39,11 +39,6 @@ public class MaFenetre extends JFrame {
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
 
-	public static List<String> getListScore() {
-
-		return listScore;
-	}
-
 	public MaFenetre() {
 
 		FenetreNom.MY_PLAYER.setScore(0);
@@ -103,8 +98,10 @@ public class MaFenetre extends JFrame {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
+		File file = new File("C://temp");
 
-		File file = new File("C://temp/scoring");
+		file.mkdir();
+		file = new File("C://temp/scoring");
 
 		if (!file.exists()) {
 
@@ -143,6 +140,7 @@ public class MaFenetre extends JFrame {
 			e.printStackTrace();
 		}
 		this.dispose();
+		clip.close();
 		this.setVisible(false);
 		new FenetreGameOver();
 	}
@@ -198,5 +196,10 @@ public class MaFenetre extends JFrame {
 
 	public static Clip getClip() {
 		return clip;
+	}
+
+	public static List<String> getListScore() {
+
+		return listScore;
 	}
 }
