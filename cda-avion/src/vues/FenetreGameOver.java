@@ -9,6 +9,15 @@ import controllers.ActionListenerFenetreGameOver;
 
 public class FenetreGameOver extends JFrame {
 
+	private ActionListenerFenetreGameOver listener;
+	private JButton buttonCredits = new JButton("Go");;
+	private JButton buttonQuitter = new JButton("Go");;
+	private JButton buttonAffichageDesScores = new JButton("Go");;
+	private JButton buttonReplay = new JButton("Go");;
+	private JLabel label1 = new JLabel("Replay");
+	private JLabel label2 = new JLabel("Voir Score");
+	private JLabel label3 = new JLabel("Quitter");
+	private JLabel label4 = new JLabel("Crédits");
 	/**
 	 * 
 	 */
@@ -16,7 +25,7 @@ public class FenetreGameOver extends JFrame {
 
 	public FenetreGameOver() {
 
-		ActionListenerFenetreGameOver listener = new ActionListenerFenetreGameOver(this);
+		listener = new ActionListenerFenetreGameOver(this);
 		JPanel pn = new JPanel();
 
 		pn.setSize(this.getWidth(), this.getHeight());
@@ -29,11 +38,6 @@ public class FenetreGameOver extends JFrame {
 		this.setLocation(550, 100);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		JButton buttonReplay = new JButton("Go");
-		JButton buttonAffichageDesScores = new JButton("Go");
-		JButton buttonQuitter = new JButton("Go");
-		JButton buttonCredits = new JButton("Go");
-
 		buttonReplay.setName("Replay");
 		buttonAffichageDesScores.setName("Score");
 		buttonQuitter.setName("Quitter");
@@ -43,11 +47,6 @@ public class FenetreGameOver extends JFrame {
 		buttonReplay.addActionListener(listener);
 		buttonAffichageDesScores.addActionListener(listener);
 		buttonCredits.addActionListener(listener);
-
-		JLabel label1 = new JLabel("Replay");
-		JLabel label2 = new JLabel("Voir Score");
-		JLabel label3 = new JLabel("Quitter");
-		JLabel label4 = new JLabel("Crédits");
 
 		buttonReplay.setBounds(170, 15, 60, 30);
 		buttonAffichageDesScores.setBounds(170, 115, 60, 30);

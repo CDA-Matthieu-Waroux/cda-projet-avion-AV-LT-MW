@@ -2,10 +2,8 @@ package vues;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -36,6 +34,14 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
+	private final PanelMeteorite pnM1;
+	private final PanelMeteorite pnM2;
+	private final PanelMeteorite pnM3;
+	private final PanelMeteorite pnM4;
+	private final PanelCentral pnC;
+	private final PanelAvion pnA;
+	private final ThreadGroup tgroup;
+
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
 
@@ -53,7 +59,7 @@ public class MaFenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
-		PanelCentral pnC = new PanelCentral();
+		pnC = new PanelCentral();
 		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
@@ -70,12 +76,12 @@ public class MaFenetre extends JFrame {
 			throw new RuntimeException(e);
 		}
 
-		PanelMeteorite pnM1 = new PanelMeteorite();
-		PanelMeteorite pnM2 = new PanelMeteorite();
-		PanelMeteorite pnM3 = new PanelMeteorite();
-		PanelMeteorite pnM4 = new PanelMeteorite();
+		pnM1 = new PanelMeteorite();
+		pnM2 = new PanelMeteorite();
+		pnM3 = new PanelMeteorite();
+		pnM4 = new PanelMeteorite();
 
-		PanelAvion pnA = new PanelAvion(pnC);
+		pnA = new PanelAvion(pnC);
 		pnC.add(pf);
 		pnC.add(pnA);
 		pnC.add(pnM1);
@@ -91,6 +97,8 @@ public class MaFenetre extends JFrame {
 		t3 = new MonThread(pnA, pnM3, this, pf);
 		t4 = new MonThread(pnA, pnM4, this, pf);
 
+		tgroup = new ThreadGroup("coucou");
+
 		t1.start();
 		t2.start();
 		t3.start();
@@ -104,50 +112,55 @@ public class MaFenetre extends JFrame {
 		t3.setContinuer(false);
 		t4.setContinuer(false);
 
-		File file = new File("C://temp/scoring");
-
-		if (!file.exists()) {
-
-			try {
-				file.createNewFile();
-				VerifScore(file);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else {
-			VerifScore(file);
-
-			try {
-				file.delete();
-				file.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-
-			listScore.forEach(x -> {
-				try {
-					bw.write(x);
-					bw.newLine();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-			});
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.dispose();
-		this.setVisible(false);
+//		File file = new File("C://temp/scoring");
+//
+//		if (!file.exists()) {
+//
+//			try {
+//				file.createNewFile();
+//				verifScore(file);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			verifScore(file);
+//
+//			try {
+//				file.delete();
+//				file.createNewFile();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+//
+//		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+//
+//			listScore.forEach(x -> {
+//				try {
+//					bw.write(x);
+//					bw.newLine();
+//
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//
+//			});
+//			bw.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		clip.stop();
 		new FenetreGameOver();
+		this.removeAll();
+		this.dispose();
+
+// Isame t'es pas bon ! ça marche pas		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		// this.setVisible(false);
+
 	}
 
-	private void VerifScore(File pFile) {
+	private void verifScore(File pFile) {
 		System.out.println(listScore);
 		listScore.clear();
 
