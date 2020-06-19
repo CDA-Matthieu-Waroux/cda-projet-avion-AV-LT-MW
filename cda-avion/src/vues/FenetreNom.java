@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controllers.MyActionListener;
@@ -22,7 +23,17 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	private JPanel containerBouton = new JPanel();
 	private JPanel top = new JPanel();
 	private String nomJoueur;
+
+	public String getNomJoueur() {
+		return nomJoueur;
+	}
+
+	public void setNomJoueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
+	}
+
 	public final static Player MY_PLAYER = new Player();
+
 	private final static int HAUTEUR_FENETRE = 150;
 	private final static int LARGEUR_FENETRE = 500;
 
@@ -76,31 +87,29 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	public void afficherCaseNom() {
 
 		nomJoueur = jtf1.getText();
+
 		Pattern vPattern = Pattern.compile("^[a-zA-Z]+$");
-		System.out.println(nomJoueur);
 
 		if (vPattern.matcher(nomJoueur).matches()) {
-			if (nomJoueur.length() > 6)
+			if (nomJoueur.length() > 6) {
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 6 caractères maximum");
+				jtf1.setText("");
 
-			{
-				System.out.println("Le nom doit contenir 6 caract�res maximum");
+			} else if (nomJoueur.length() < 3) {
 
-			} else if (nomJoueur.length() < 2) {
-
-				System.out.println("Le nom doit contenir au moins 2 caract�res");
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 3 caractères minimum");
+				jtf1.setText("");
 
 			} else {
-				System.out.println("Votre nom est bien enregistr�");
 				MY_PLAYER.setNom(nomJoueur);
+				this.dispose();
 				this.setVisible(false);
 				new MaFenetre();
 			}
 
 		} else {
-
-			System.out.println(nomJoueur + ". Le nom ne doit contenir que des lettres");
+			JOptionPane.showMessageDialog(this, " Le nom ne doit contenir que des lettres");
+			jtf1.setText("");
 		}
-
 	}
-
 }
