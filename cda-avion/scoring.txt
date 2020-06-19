@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Joueur : aze 2020-06-19T09:42:14.587 Score : 33
 Joueur : loreen 2020-06-19T09:45:18.223 Score : 21
@@ -10,3 +11,22 @@ Joueur : aze 2020-06-19T09:51:23.392 Score : 2
 Joueur : azeaz 2020-06-19T09:52:53.761 Score : 4
 Joueur : aze 2020-06-19T10:38:13.252 Score : 55
 Joueur : aurel 2020-06-19T10:50:03.391 Score : 2
+=======
+
+Nom : 2020-06-18T14:08:59.279  Score:46
+Nom : 2020-06-18T14:11:41.189  Score:5
+Nom : 2020-06-18T14:11:59.202  Score:3
+Nom : 2020-06-18T14:28:14.252 Score : 95
+Nom : 2020-06-18T15:10:10.598 Score : 5
+Nom : 2020-06-18T15:10:57.988 Score : 2
+Nom : 2020-06-18T15:14:56.101 Score : 13
+Nom : 2020-06-18T15:15:46.867 Score : 14
+Nom : 2020-06-18T15:31:25.999 Score : 5
+Nom : 2020-06-18T15:45:22.428 Score : 25
+Nom : 2020-06-18T15:47:48.824 Score : 5
+Nom : 2020-06-18T15:54:26.796 Score : 20
+Joueur : lolo 2020-06-18T17:56:36.825 Score : 35
+Joueur : lolo 2020-06-18T17:58:07.876 Score : 40
+Joueur : lolo 2020-06-18T17:59:06.312 Score : 195
+Joueur : lolo 2020-06-18T18:00:21.781 Score : 323
+>>>>>>> loreen
