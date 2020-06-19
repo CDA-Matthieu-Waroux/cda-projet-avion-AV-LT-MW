@@ -14,6 +14,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 	private FenetreGameOver vFenetre;
 	private static String recup = "";
+	private String name = "";
 
 	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre) {
 		this.vFenetre = pFenetre;
@@ -22,7 +23,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("click");
-		String name = ((JButton) e.getSource()).getName();
+		name = ((JButton) e.getSource()).getName();
 
 		if (name.equalsIgnoreCase("Replay")) {
 
@@ -44,8 +45,8 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		} else if (name.equalsIgnoreCase("Crédits")) {
 
-			String recup = "************** DEVELOPPEURS **************** \n" + " Loreen TOURON \n"
-					+ " Matthieu WAROUX \n" + " Aurélien VANNIER \n" + "************* MUSIQUE ************ \n"
+			recup = "************** DEVELOPPEURS **************** \n" + " Loreen TOURON \n" + " Matthieu WAROUX \n"
+					+ " Aurélien VANNIER \n" + "************* MUSIQUE ************ \n"
 					+ "Titre:  Cascade, Auteur: Kubbi, \n"
 					+ "Licence: https://creativecommons.org/licenses/by-sa/3.0/deed.fr, \n"
 					+ "Téléchargement (8MB): https://auboutdufil.com/?id=485";

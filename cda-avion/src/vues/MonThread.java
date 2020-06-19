@@ -84,6 +84,7 @@ public class MonThread extends Thread {
 			vPf.getLabelVie().setText("Vie : " + pAv.getAvion().getPv());
 			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
 				this.continuer = false;
+
 				vMaFenetre.finDePartie();
 
 			} else {
