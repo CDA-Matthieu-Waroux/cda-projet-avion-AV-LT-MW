@@ -52,7 +52,7 @@ public class FenetreGameOver extends JFrame {
 		buttonReplay.setBounds(170, 15, 60, 30);
 		buttonAffichageDesScores.setBounds(170, 115, 60, 30);
 		buttonQuitter.setBounds(170, 215, 60, 30);
-		buttonQuitter.setBounds(170, 315, 60, 30);
+		buttonCredits.setBounds(170, 315, 60, 30);
 
 		label1.setBounds(120, 15, 100, 30);
 		label2.setBounds(100, 115, 100, 30);
