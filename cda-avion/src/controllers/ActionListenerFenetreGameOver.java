@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import tools.MeteoriteAleatoire;
 import vues.FenetreGameOver;
 import vues.MaFenetre;
 
@@ -28,6 +29,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		if (name.equalsIgnoreCase("Replay")) {
 			vFenetre.dispose();
+			MeteoriteAleatoire.RafraichirListe();
 			new MaFenetre();
 
 		} else if (name.equalsIgnoreCase("Score")) {
@@ -48,6 +50,22 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		} else if (name.equalsIgnoreCase("Quitter")) {
 			System.exit(0);
+
+		} else if (name.equalsIgnoreCase("Crédits")) {
+
+			File file = new File("credit.txt");
+			String text = "";
+			String recup = "";
+			try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+				while ((text = br.readLine()) != null) {
+					recup += text + "\n";
+				}
+			} catch (IOException ec) {
+				ec.printStackTrace();
+			}
+
+			JOptionPane.showMessageDialog(vFenetre, recup);
 
 		}
 	}

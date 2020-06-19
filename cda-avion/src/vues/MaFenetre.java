@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
@@ -43,11 +44,13 @@ public class MaFenetre extends JFrame {
 		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
-			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/5Keer.wav");
+			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/Cascade.wav");
 			InputStream bufferedIn = new BufferedInputStream(urlMusique);
 			AudioInputStream monExplosion = AudioSystem.getAudioInputStream(bufferedIn);
 			Clip clip = AudioSystem.getClip();
 			clip.open(monExplosion);
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
