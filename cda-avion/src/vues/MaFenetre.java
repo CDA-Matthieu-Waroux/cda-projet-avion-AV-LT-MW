@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -21,10 +20,10 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import controllers.MyTimer;
 import models.Player;
+import tools.VerifNom;
 
 public class MaFenetre extends JFrame {
 
@@ -49,11 +48,10 @@ public class MaFenetre extends JFrame {
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
 	public final static Player MY_PLAYER = new Player();
-	private static String nomJoueur;
 
 	public MaFenetre() {
 
-		verificationNom();
+		VerifNom.verificationNom(this);
 
 		MY_PLAYER.setScore(0);
 		this.setSize(LARGEUR, HAUTEUR);// largeur, hauteur
@@ -210,32 +208,6 @@ public class MaFenetre extends JFrame {
 			}
 		} else {
 			listScore.add(text);
-		}
-	}
-
-	public void verificationNom() {
-
-		nomJoueur = JOptionPane.showInputDialog("Saisissez votre nom .");
-
-		Pattern vPattern = Pattern.compile("^[a-zA-Z]+$");
-
-		if (vPattern.matcher(nomJoueur).matches()) {
-			if (nomJoueur.length() > 6) {
-				JOptionPane.showMessageDialog(this, "Le nom doit contenir 6 caractères maximum");
-				verificationNom();
-
-			} else if (nomJoueur.length() < 3) {
-
-				JOptionPane.showMessageDialog(this, "Le nom doit contenir 3 caractères minimum");
-				verificationNom();
-			} else {
-				MY_PLAYER.setNom(nomJoueur);
-
-			}
-
-		} else {
-			JOptionPane.showMessageDialog(this, " Le nom ne doit contenir que des lettres");
-			verificationNom();
 		}
 	}
 
