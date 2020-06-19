@@ -1,7 +1,7 @@
 package vues;
 
-import java.io.BufferedReader;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -34,9 +35,10 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
-	private static ArrayList<String> listScore = new ArrayList<>();
+	private static List<String> listScore = new ArrayList<>();
 
-	public static ArrayList<String> getListScore() {
+	public static List<String> getListScore() {
+
 		return listScore;
 	}
 
@@ -126,12 +128,13 @@ public class MaFenetre extends JFrame {
 				try {
 					bw.write(x);
 					bw.newLine();
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 
 			});
-
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -142,21 +145,21 @@ public class MaFenetre extends JFrame {
 	}
 
 	private void VerifScore(File pFile) {
-		listScore.clear();
 		System.out.println(listScore);
+		listScore.clear();
 
 		String text = "";
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm:ss");
-
 		try (BufferedReader br = new BufferedReader(new FileReader(pFile))) {
 
 			while ((text = br.readLine()) != null) {
 				listScore.add(text);
 			}
+
 		} catch (IOException ec) {
 			ec.printStackTrace();
 		}
 
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm:ss");
 		text = this.pf.getLabelNom().getText() + " " + dtf.format(LocalDateTime.now()) + " "
 				+ pf.getLabelScore().getText();
 		String f = "";
@@ -168,17 +171,16 @@ public class MaFenetre extends JFrame {
 				f = f.trim();
 
 				g = Integer.parseInt(f);
-				if (g < FenetreNom.MY_PLAYER.getScore() && i != 0) {
-					continue;
 
-				} else if (i == 0 && g > FenetreNom.MY_PLAYER.getScore()) {
+				if (i == 0 && g > FenetreNom.MY_PLAYER.getScore()) {
+					continue;
+				} else if (g < FenetreNom.MY_PLAYER.getScore()) {
+					listScore.add(i, text);
+					break;
+				} else if (g > FenetreNom.MY_PLAYER.getScore() && i == (listScore.size() - 1)) {
 					listScore.add(listScore.size(), text);
 					break;
-				} else if (g > FenetreNom.MY_PLAYER.getScore() && i != 0) {
-					listScore.add(listScore.size() - i, text);
-					break;
-				} else {
-					listScore.add(0, text);
+
 				}
 
 			}
