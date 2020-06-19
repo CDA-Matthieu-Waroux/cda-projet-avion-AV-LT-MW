@@ -24,14 +24,6 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 	private JPanel top = new JPanel();
 	private String nomJoueur;
 
-	public String getNomJoueur() {
-		return nomJoueur;
-	}
-
-	public void setNomJoueur(String nomJoueur) {
-		this.nomJoueur = nomJoueur;
-	}
-
 	public final static Player MY_PLAYER = new Player();
 
 	private final static int HAUTEUR_FENETRE = 150;

@@ -14,7 +14,7 @@ public class PanelFooter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private final static int HAUTEUR_FOOTER = 100;
 	private final static int LARGEUR_FOOTER = 700;
-	private JLabel labelScore = new JLabel("Score : 0");
+	private JLabel labelScore = new JLabel("Score :  0");
 	private JLabel labelNom = new JLabel("Nom :");
 	private JLabel labelVie = new JLabel("Vie : 5");
 

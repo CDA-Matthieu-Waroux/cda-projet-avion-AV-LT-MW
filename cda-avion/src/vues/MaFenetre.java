@@ -27,10 +27,15 @@ public class MaFenetre extends JFrame {
 	private final MonThread t3;
 	private final MonThread t4;
 	private final PanelFooter pf;
-	private ArrayList<String> listScore = new ArrayList<>();
+	private static ArrayList<String> listScore = new ArrayList<>();
+
+	public static ArrayList<String> getListScore() {
+		return listScore;
+	}
 
 	public MaFenetre() {
 
+		FenetreNom.MY_PLAYER.setScore(0);
 		this.setSize(LARGEUR, HAUTEUR);// largeur, hauteur
 		this.setLocation(POSITION_X, POSITION_Y);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
@@ -52,7 +57,7 @@ public class MaFenetre extends JFrame {
 		pnC.add(pnM2);
 		pnC.add(pnM3);
 		pnC.add(pnM4);
-		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), FenetreNom.MY_PLAYER, pf, pnM1, pnM2, pnM3, pnM4);
+		new MyTimer(TAUX_RAFRAICHESSEMENT, pnA.getAvion(), pf, pnM1, pnM2, pnM3, pnM4);
 		this.add(pnC);
 
 		this.setVisible(true);// tj en dernier mais avant le démarrage des threads!
@@ -73,22 +78,40 @@ public class MaFenetre extends JFrame {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm:ss");
+
 		File file = new File("C://temp/scoring");
 
 		if (!file.exists()) {
 
 			try {
 				file.createNewFile();
+				VerifScore(file);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			VerifScore(file);
+
+			try {
+				file.delete();
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
-		VerifScore(file);
+
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-			bw.newLine();
-			bw.write(this.pf.getLabelNom().getText() + " " + dtf.format(LocalDateTime.now()) + " "
-					+ pf.getLabelScore().getText());
+
+			listScore.forEach(x -> {
+				try {
+					bw.write(x);
+					bw.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			});
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -100,8 +123,11 @@ public class MaFenetre extends JFrame {
 	}
 
 	private void VerifScore(File pFile) {
+		listScore.clear();
+		System.out.println(listScore);
 
 		String text = "";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm:ss");
 
 		try (BufferedReader br = new BufferedReader(new FileReader(pFile))) {
 
@@ -111,19 +137,39 @@ public class MaFenetre extends JFrame {
 		} catch (IOException ec) {
 			ec.printStackTrace();
 		}
-		listScore.forEach(x -> {
-			int g = (x.length() - 2);
 
-			String f = x.substring(g);
+		text = this.pf.getLabelNom().getText() + " " + dtf.format(LocalDateTime.now()) + " "
+				+ pf.getLabelScore().getText();
+		String f = "";
+		if (!listScore.isEmpty()) {
+			for (int i = 0; i < listScore.size(); i++) {
+				f = listScore.get(i);
+				int g = (f.length() - 3);
+				f = f.substring(g);
+				f = f.trim();
 
-			g = Integer.parseInt(f);
-			if (g > Integer.parseInt(pf.getLabelScore().getText())) {
-				System.out.println("plus Grand");
+				g = Integer.parseInt(f);
+				if (g < FenetreNom.MY_PLAYER.getScore() && i != 0) {
+					continue;
+
+				} else if (i == 0 && g > FenetreNom.MY_PLAYER.getScore()) {
+					listScore.add(listScore.size(), text);
+					break;
+				} else if (g > FenetreNom.MY_PLAYER.getScore() && i != 0) {
+					listScore.add(listScore.size() - i, text);
+					break;
+				} else {
+					listScore.add(0, text);
+				}
 
 			}
-			System.out.println(f);
-		});
 
+			while (listScore.size() > 20) {
+				listScore.remove(20);
+			}
+		} else {
+			listScore.add(text);
+		}
 	}
 
 }
