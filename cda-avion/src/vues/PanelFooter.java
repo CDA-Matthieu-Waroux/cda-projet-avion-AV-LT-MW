@@ -14,7 +14,7 @@ public class PanelFooter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private final static int HAUTEUR_FOOTER = 100;
 	private final static int LARGEUR_FOOTER = 700;
-	private JLabel labelScore = new JLabel("Score : 0");
+	private JLabel labelScore = new JLabel("Score :  0");
 	private JLabel labelNom = new JLabel("Nom :");
 	private JLabel labelVie = new JLabel("Vie : 5");
 
@@ -37,6 +37,9 @@ public class PanelFooter extends JPanel {
 		labelVie.setForeground(Color.black);
 		labelNom.setBounds(50, 0, 150, 50);
 		labelVie.setBounds(50, 0, 150, 50);
+		labelScore.setForeground(Color.WHITE);
+		labelNom.setForeground(Color.WHITE);
+		labelVie.setForeground(Color.WHITE);
 
 		containerNom.add(labelNom);
 		containerScore.add(labelScore);
