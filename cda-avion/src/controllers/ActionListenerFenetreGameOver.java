@@ -28,7 +28,6 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 			vFenetre.dispose();
 			MeteoriteAleatoire.RafraichirListe();
-			MaFenetre.getClip().close();
 			new MaFenetre();
 
 		} else if (name.equalsIgnoreCase("Score")) {
