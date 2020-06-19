@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -20,8 +21,10 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import controllers.MyTimer;
+import models.Player;
 
 public class MaFenetre extends JFrame {
 
@@ -38,10 +41,14 @@ public class MaFenetre extends JFrame {
 	private final PanelFooter pf;
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
+	public final static Player MY_PLAYER = new Player();
+	private static String nomJoueur;
 
 	public MaFenetre() {
 
-		FenetreNom.MY_PLAYER.setScore(0);
+		verificationNom();
+
+		MY_PLAYER.setScore(0);
 		this.setSize(LARGEUR, HAUTEUR);// largeur, hauteur
 		this.setLocation(POSITION_X, POSITION_Y);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
@@ -49,7 +56,7 @@ public class MaFenetre extends JFrame {
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 		PanelCentral pnC = new PanelCentral();
-		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
+		pf = new PanelFooter(MY_PLAYER.getNom());
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
 			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/Cascade.wav");
@@ -173,12 +180,12 @@ public class MaFenetre extends JFrame {
 
 				g = Integer.parseInt(f);
 
-				if (i == 0 && g > FenetreNom.MY_PLAYER.getScore()) {
+				if (i == 0 && g > MY_PLAYER.getScore()) {
 					continue;
-				} else if (g < FenetreNom.MY_PLAYER.getScore()) {
+				} else if (g < MY_PLAYER.getScore()) {
 					listScore.add(i, text);
 					break;
-				} else if (g > FenetreNom.MY_PLAYER.getScore() && i == (listScore.size() - 1)) {
+				} else if (g > MY_PLAYER.getScore() && i == (listScore.size() - 1)) {
 					listScore.add(listScore.size(), text);
 					break;
 
@@ -191,6 +198,32 @@ public class MaFenetre extends JFrame {
 			}
 		} else {
 			listScore.add(text);
+		}
+	}
+
+	public void verificationNom() {
+
+		nomJoueur = JOptionPane.showInputDialog("Saisissez votre nom .");
+
+		Pattern vPattern = Pattern.compile("^[a-zA-Z]+$");
+
+		if (vPattern.matcher(nomJoueur).matches()) {
+			if (nomJoueur.length() > 6) {
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 6 caractères maximum");
+				verificationNom();
+
+			} else if (nomJoueur.length() < 3) {
+
+				JOptionPane.showMessageDialog(this, "Le nom doit contenir 3 caractères minimum");
+				verificationNom();
+			} else {
+				MY_PLAYER.setNom(nomJoueur);
+
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(this, " Le nom ne doit contenir que des lettres");
+			verificationNom();
 		}
 	}
 

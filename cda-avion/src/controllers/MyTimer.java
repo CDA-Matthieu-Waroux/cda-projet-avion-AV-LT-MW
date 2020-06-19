@@ -12,7 +12,6 @@ import models.Avion;
 import models.Meteorite;
 import models.MeteoriteZigZag;
 import tools.MeteoriteAleatoire;
-import vues.FenetreNom;
 import vues.MaFenetre;
 import vues.PanelCentral;
 import vues.PanelFooter;
@@ -40,12 +39,12 @@ public class MyTimer extends Timer {
 					meteorite = panelMeteorite.getMeteorite();
 
 					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
-						if (FenetreNom.MY_PLAYER.getScore() < SCORE_MAX) {
-							FenetreNom.MY_PLAYER.setScore(FenetreNom.MY_PLAYER.getScore() + meteorite.getScore());
+						if (MaFenetre.MY_PLAYER.getScore() < SCORE_MAX) {
+							MaFenetre.MY_PLAYER.setScore(MaFenetre.MY_PLAYER.getScore() + meteorite.getScore());
 
-							vPanelFooter.getLabelScore().setText("Score :  " + FenetreNom.MY_PLAYER.getScore());
-							if (FenetreNom.MY_PLAYER.getScore() > SCORE_MAX) {
-								FenetreNom.MY_PLAYER.setScore(SCORE_MAX);
+							vPanelFooter.getLabelScore().setText("Score :  " + MaFenetre.MY_PLAYER.getScore());
+							if (MaFenetre.MY_PLAYER.getScore() > SCORE_MAX) {
+								MaFenetre.MY_PLAYER.setScore(SCORE_MAX);
 							}
 						}
 
