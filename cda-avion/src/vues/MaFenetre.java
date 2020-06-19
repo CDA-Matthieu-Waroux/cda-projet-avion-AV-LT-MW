@@ -22,6 +22,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 import controllers.MyTimer;
+import models.Player;
+import tools.VerifNom;
 
 public class MaFenetre extends JFrame {
 
@@ -45,10 +47,13 @@ public class MaFenetre extends JFrame {
 
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
+	public final static Player MY_PLAYER = new Player();
 
 	public MaFenetre() {
 
-		FenetreNom.MY_PLAYER.setScore(0);
+		VerifNom.verificationNom(this);
+
+		MY_PLAYER.setScore(0);
 		this.setSize(LARGEUR, HAUTEUR);// largeur, hauteur
 		this.setLocation(POSITION_X, POSITION_Y);// abscisse ordonnée, 0 : point en haut à gauche de la fenetre
 		this.setResizable(false);// pour que la taille d'écran ne bouge pas
@@ -56,7 +61,7 @@ public class MaFenetre extends JFrame {
 		this.setTitle("EVITATOR D'ASTEROÏDES 3000");
 		this.setLayout(null);// definition du layout pour la fenetre
 		pnC = new PanelCentral();
-		pf = new PanelFooter(FenetreNom.MY_PLAYER.getNom());
+		pf = new PanelFooter(MY_PLAYER.getNom());
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
 			InputStream urlMusique = MonThread.class.getResourceAsStream("/ressources/Cascade.wav");
@@ -178,12 +183,12 @@ public class MaFenetre extends JFrame {
 
 				g = Integer.parseInt(f);
 
-				if (i == 0 && g > FenetreNom.MY_PLAYER.getScore()) {
+				if (i == 0 && g > MY_PLAYER.getScore()) {
 					continue;
-				} else if (g < FenetreNom.MY_PLAYER.getScore()) {
+				} else if (g < MY_PLAYER.getScore()) {
 					listScore.add(i, text);
 					break;
-				} else if (g > FenetreNom.MY_PLAYER.getScore() && i == (listScore.size() - 1)) {
+				} else if (g > MY_PLAYER.getScore() && i == (listScore.size() - 1)) {
 					listScore.add(listScore.size(), text);
 					break;
 
