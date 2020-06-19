@@ -1,6 +1,8 @@
 package vues;
 
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -14,14 +16,17 @@ import controllers.MyActionListener;
 import models.Player;
 
 @SuppressWarnings("serial")
+
 public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demarragé, le joueur renseigne son nom
 
 	private JLabel label = new JLabel("Saisissez votre nom");
 	private JFormattedTextField jtf1 = new JFormattedTextField();
+
 	private final JButton boutonEnregistrement;
+
 	private JPanel containerNom = new JPanel();
 	private JPanel containerBouton = new JPanel();
-	private JPanel top = new JPanel();
+
 	private String nomJoueur;
 
 	public String getNomJoueur() {
@@ -65,7 +70,7 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 
 		containerNom.add(label);
 		containerNom.add(jtf1);
-		containerNom.add(top);
+
 		this.add(containerNom);
 
 		containerBouton.setSize(LARGEUR_CONTAINER_BOUTON, HAUTEUR_CONTAINER_BOUTON);
@@ -73,9 +78,32 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 		containerBouton.setLocation(0, 75);
 
 		this.boutonEnregistrement = new JButton();
+		MyActionListener mAction = new MyActionListener(this);
+
+		jtf1.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					afficherCaseNom();
+				}
+
+			}
+		});
 		this.boutonEnregistrement.setText("Get Start!");
-		this.boutonEnregistrement.setBounds(200, 70, 100, 30);
-		this.boutonEnregistrement.addActionListener(new MyActionListener(this));
+		this.boutonEnregistrement.setBounds(200, HAUTEUR_CONTAINER_BOUTON, 100, 30);
+		this.boutonEnregistrement.addActionListener(mAction);
 		containerBouton.add(boutonEnregistrement);
 
 //		this.add(containerBouton);
@@ -112,4 +140,5 @@ public class FenetreNom extends JFrame {// premiere fenetre qui s'ouvre au demar
 			jtf1.setText("");
 		}
 	}
+
 }

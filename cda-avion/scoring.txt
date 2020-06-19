@@ -11,3 +11,7 @@ Nom : 2020-06-18T15:31:25.999 Score : 5
 Nom : 2020-06-18T15:45:22.428 Score : 25
 Nom : 2020-06-18T15:47:48.824 Score : 5
 Nom : 2020-06-18T15:54:26.796 Score : 20
+Joueur : lolo 2020-06-18T17:56:36.825 Score : 35
+Joueur : lolo 2020-06-18T17:58:07.876 Score : 40
+Joueur : lolo 2020-06-18T17:59:06.312 Score : 195
+Joueur : lolo 2020-06-18T18:00:21.781 Score : 323
