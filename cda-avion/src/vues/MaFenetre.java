@@ -2,8 +2,10 @@ package vues;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -40,15 +42,9 @@ public class MaFenetre extends JFrame {
 	private final PanelMeteorite pnM4;
 	private final PanelCentral pnC;
 	private final PanelAvion pnA;
-	private final ThreadGroup tgroup;
 
 	private static Clip clip;
 	private static List<String> listScore = new ArrayList<>();
-
-	public static List<String> getListScore() {
-
-		return listScore;
-	}
 
 	public MaFenetre() {
 
@@ -97,8 +93,6 @@ public class MaFenetre extends JFrame {
 		t3 = new MonThread(pnA, pnM3, this, pf);
 		t4 = new MonThread(pnA, pnM4, this, pf);
 
-		tgroup = new ThreadGroup("coucou");
-
 		t1.start();
 		t2.start();
 		t3.start();
@@ -111,53 +105,56 @@ public class MaFenetre extends JFrame {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
+		File file = new File("C://temp");
 
-//		File file = new File("C://temp/scoring");
-//
-//		if (!file.exists()) {
-//
-//			try {
-//				file.createNewFile();
-//				verifScore(file);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		} else {
-//			verifScore(file);
-//
-//			try {
-//				file.delete();
-//				file.createNewFile();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//
-//		}
-//
-//		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-//
-//			listScore.forEach(x -> {
-//				try {
-//					bw.write(x);
-//					bw.newLine();
-//
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//
-//			});
-//			bw.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		clip.stop();
-		new FenetreGameOver();
-		this.removeAll();
+		file.mkdir();
+		file = new File("C://temp/scoring");
+
+		try {
+			if (!file.createNewFile()) {
+				try {
+					file.createNewFile();
+					verifScore(file);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else
+
+			{
+				verifScore(file);
+
+				try {
+					file.delete();
+					file.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+
+			listScore.forEach(x -> {
+				try {
+					bw.write(x);
+					bw.newLine();
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			});
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.dispose();
-
-// Isame t'es pas bon ! ça marche pas		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-		// this.setVisible(false);
-
+		clip.close();
+		this.setVisible(false);
+		new FenetreGameOver();
 	}
 
 	private void verifScore(File pFile) {
@@ -211,5 +208,10 @@ public class MaFenetre extends JFrame {
 
 	public static Clip getClip() {
 		return clip;
+	}
+
+	public static List<String> getListScore() {
+
+		return listScore;
 	}
 }
