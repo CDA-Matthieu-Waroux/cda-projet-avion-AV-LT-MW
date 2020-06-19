@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 import models.Avion;
 import models.Meteorite;
 import models.MeteoriteZigZag;
-import models.Player;
 import tools.MeteoriteAleatoire;
+import vues.FenetreNom;
 import vues.MaFenetre;
 import vues.PanelCentral;
 import vues.PanelFooter;
@@ -23,7 +23,7 @@ public class MyTimer extends Timer {
 
 	public static final int SCORE_MAX = 999;
 
-	public MyTimer(long vTime, Avion pMyAvion, Player pPlayer, PanelFooter vPanelFooter, PanelMeteorite... pPnM) {
+	public MyTimer(long vTime, Avion pMyAvion, PanelFooter vPanelFooter, PanelMeteorite... pPnM) {
 
 		Random rnd = new Random();
 		Timer t = new Timer();
@@ -40,12 +40,12 @@ public class MyTimer extends Timer {
 					meteorite = panelMeteorite.getMeteorite();
 
 					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
-						if (pPlayer.getScore() < SCORE_MAX) {
-							pPlayer.setScore(pPlayer.getScore() + meteorite.getScore());
+						if (FenetreNom.MY_PLAYER.getScore() < SCORE_MAX) {
+							FenetreNom.MY_PLAYER.setScore(FenetreNom.MY_PLAYER.getScore() + meteorite.getScore());
 
-							vPanelFooter.getLabelScore().setText("Score : " + pPlayer.getScore());
-							if (pPlayer.getScore() > SCORE_MAX) {
-								pPlayer.setScore(SCORE_MAX);
+							vPanelFooter.getLabelScore().setText("Score :  " + FenetreNom.MY_PLAYER.getScore());
+							if (FenetreNom.MY_PLAYER.getScore() > SCORE_MAX) {
+								FenetreNom.MY_PLAYER.setScore(SCORE_MAX);
 							}
 						}
 

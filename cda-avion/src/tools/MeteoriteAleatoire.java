@@ -39,23 +39,23 @@ public class MeteoriteAleatoire {
 	private static MeteoriteSimple simple3 = new MeteoriteSimple(HAUTEUR_METEORITE, LARGEUR_METEORITE, VITESSE_RAPIDE,
 			"/ressources/meteorite.png");
 
-	private static MeteoriteFeu feu = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_LENTE,
+	private static MeteoriteFeu feu = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_NORMAL,
 			"/ressources/meteorite.png");
-	private static MeteoriteFeu feu1 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_LENTE,
+	private static MeteoriteFeu feu1 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_NORMAL,
 			"/ressources/meteorite.png");
-	private static MeteoriteFeu feu2 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_LENTE,
+	private static MeteoriteFeu feu2 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_NORMAL,
 			"/ressources/meteorite.png");
-	private static MeteoriteFeu feu3 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_LENTE,
+	private static MeteoriteFeu feu3 = new MeteoriteFeu(HAUTEUR_METEORITE + 10, LARGEUR_METEORITE + 10, VITESSE_NORMAL,
 			"/ressources/meteorite.png");
 
 	private static MeteoriteGlace glace = new MeteoriteGlace(HAUTEUR_METEORITE + 5, LARGEUR_METEORITE + 5,
-			VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
+			VITESSE_RAPIDE, "/ressources/meteoriteGlace.png");
 	private static MeteoriteGlace glace1 = new MeteoriteGlace(HAUTEUR_METEORITE + 5, LARGEUR_METEORITE + 5,
-			VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
+			VITESSE_RAPIDE, "/ressources/meteoriteGlace.png");
 	private static MeteoriteGlace glace2 = new MeteoriteGlace(HAUTEUR_METEORITE + 5, LARGEUR_METEORITE + 5,
-			VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
+			VITESSE_RAPIDE, "/ressources/meteoriteGlace.png");
 	private static MeteoriteGlace glace3 = new MeteoriteGlace(HAUTEUR_METEORITE + 5, LARGEUR_METEORITE + 5,
-			VITESSE_NORMAL, "/ressources/meteoriteGlace.png");
+			VITESSE_RAPIDE, "/ressources/meteoriteGlace.png");
 
 	private static MeteoriteIceBerg iceBerg = new MeteoriteIceBerg((HAUTEUR_METEORITE + 5) * 2,
 			(LARGEUR_METEORITE + 5) * 2, VITESSE_NORMAL, "/ressources/meteoriteIceBerg.png");

@@ -20,3 +20,5 @@ cda-avion/\.settings/
 
 cda-avion/\bin/
 .metadata/
+
+cda-avion/scoring\.txt
