@@ -9,7 +9,10 @@ public class Test {
 		new MaFenetre();
 
 		new MaFenetre();
+<<<<<<< HEAD
 		;
+=======
+>>>>>>> dev
 
 	}
 }
