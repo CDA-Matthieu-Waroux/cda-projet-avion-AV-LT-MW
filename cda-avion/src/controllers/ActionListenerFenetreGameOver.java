@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import tools.GameOver;
 import tools.MeteoriteAleatoire;
-import vues.FenetreGameOver;
 import vues.MaFenetre;
 
 public class ActionListenerFenetreGameOver implements ActionListener {
 
-	private FenetreGameOver vFenetre;
+	private GameOver vFenetre;
 	private static String recup = "";
 	private String name = "";
 
-	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre) {
+	public ActionListenerFenetreGameOver(GameOver pFenetre) {
 		this.vFenetre = pFenetre;
 	}
 
@@ -27,7 +27,6 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 		if (name.equalsIgnoreCase("Replay")) {
 
-			vFenetre.dispose();
 			MeteoriteAleatoire.RafraichirListe();
 			new MaFenetre();
 

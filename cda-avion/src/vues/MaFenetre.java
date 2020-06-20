@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 
 import controllers.MyTimer;
 import models.Player;
+import tools.GameOver;
 import tools.VerifNom;
 
 public class MaFenetre extends JFrame {
@@ -70,7 +71,11 @@ public class MaFenetre extends JFrame {
 			clip = AudioSystem.getClip();
 			clip.open(monExplosion);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
 			gainControl.setValue(-50.0f); // Reduce volume by decibels.
+
+			gainControl.setValue(-45.0f); // Reduce volume by 10 decibels.
+
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
@@ -157,12 +162,16 @@ public class MaFenetre extends JFrame {
 			e.printStackTrace();
 		}
 		clip.close();
+
 		GameOver(this);
 		// **********************************************************************************
 	}
 
 	private void GameOver(MaFenetre maFenetre) {
 		// TODO Auto-generated method stub
+
+		this.setVisible(false);
+		GameOver.afficherGameOver(this);
 
 	}
 
