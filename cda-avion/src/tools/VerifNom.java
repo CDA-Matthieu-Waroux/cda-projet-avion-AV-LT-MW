@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import vues.MaFenetre;
 
 public class VerifNom {
+
 	private static String nomJoueur;
 	private static boolean continuer = true;
 

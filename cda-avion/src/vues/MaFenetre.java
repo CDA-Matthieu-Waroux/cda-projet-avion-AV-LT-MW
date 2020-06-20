@@ -70,7 +70,7 @@ public class MaFenetre extends JFrame {
 			clip = AudioSystem.getClip();
 			clip.open(monExplosion);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(-50.0f); // Reduce volume by decibels.
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
@@ -156,10 +156,14 @@ public class MaFenetre extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.dispose();
 		clip.close();
-		this.setVisible(false);
-		new FenetreGameOver();
+		GameOver(this);
+		// **********************************************************************************
+	}
+
+	private void GameOver(MaFenetre maFenetre) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void verifScore(File pFile) {
