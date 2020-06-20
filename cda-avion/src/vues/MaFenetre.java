@@ -70,7 +70,7 @@ public class MaFenetre extends JFrame {
 			clip = AudioSystem.getClip();
 			clip.open(monExplosion);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(-45.0f); // Reduce volume by 10 decibels.
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
