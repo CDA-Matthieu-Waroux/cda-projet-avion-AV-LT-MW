@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 
 import controllers.MyTimer;
 import models.Player;
+import tools.GameOver;
 import tools.VerifNom;
 
 public class MaFenetre extends JFrame {
@@ -156,10 +157,9 @@ public class MaFenetre extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.dispose();
 		clip.close();
 		this.setVisible(false);
-		new FenetreGameOver();
+		GameOver.afficherGameOver(this);
 	}
 
 	private void verifScore(File pFile) {
