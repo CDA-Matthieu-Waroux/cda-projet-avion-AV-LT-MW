@@ -11,12 +11,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import controllers.MonThread;
 import controllers.MyKeyListener;
 import controllers.MyTimer;
+import models.Meteorite;
 import models.Player;
 import vues.MaFenetre;
+import vues.PanelAvion;
+import vues.PanelMeteorite;
 
 public class Game {
 	private static GestionnaireDeSon son = new GestionnaireDeSon("/ressources/Cascade.wav");
@@ -27,9 +31,11 @@ public class Game {
 	public static List<String> listScore = new ArrayList<>();
 	public final static Player MY_PLAYER = new Player();
 	private static MyKeyListener keyListener;
-	public static final GestionnaireDeSon SON_EXPLOSION = new GestionnaireDeSon("/ressources/sonExplosion.wav");
 	public static final BufferedImage IMAGE_VAISSEAU = AffichageImage.afficherIMG("/ressources/VaisseauGayyyyy.png");
 	public static final BufferedImage IMAGE_EXPLOSION = AffichageImage.afficherIMG("/ressources/explosion.png");
+	private static File file;
+	private static Random rnd = new Random();
+	private static Meteorite meteorite;
 
 	public static void start(MaFenetre pMf) {
 
@@ -42,7 +48,34 @@ public class Game {
 		t3.start();
 		t4.start();
 		son.playContinuly();
+		new MyTimer(MaFenetre.TAUX_RAFRAICHESSEMENT, pMf.getPnA().getAvion(), pMf.getPf(), pMf.getPnM1(), pMf.getPnM2(),
+				pMf.getPnM3(), pMf.getPnM4());
+		MY_PLAYER.setScore(0);
+		pMf.getPnA().getAvion().setPv(5);
+		pMf.getPf().getLabelVie().setText("Vie : 5");
+		pMf.getPf().getLabelScore().setText("Score : 0");
+		keyListener = new MyKeyListener(pMf.getPnA());
+		pMf.getPnA().addKeyListener(keyListener);
 
+	}
+
+	public static void replay(MaFenetre pMf) {
+
+		t1 = new MonThread(pMf.getPnA(), pMf.getPnM1(), pMf, pMf.getPf());
+		t2 = new MonThread(pMf.getPnA(), pMf.getPnM2(), pMf, pMf.getPf());
+		t3 = new MonThread(pMf.getPnA(), pMf.getPnM3(), pMf, pMf.getPf());
+		t4 = new MonThread(pMf.getPnA(), pMf.getPnM4(), pMf, pMf.getPf());
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		son.playContinuly();
+		pMf.getPnA().setLocation((MaFenetre.LARGEUR / 2) - PanelAvion.LARGEUR,
+				MaFenetre.HAUTEUR - PanelAvion.HAUTEUR - 100);
+		dessineMeteorite(pMf.getPnM1());
+		dessineMeteorite(pMf.getPnM2());
+		dessineMeteorite(pMf.getPnM3());
+		dessineMeteorite(pMf.getPnM4());
 		new MyTimer(MaFenetre.TAUX_RAFRAICHESSEMENT, pMf.getPnA().getAvion(), pMf.getPf(), pMf.getPnM1(), pMf.getPnM2(),
 				pMf.getPnM3(), pMf.getPnM4());
 
@@ -55,6 +88,13 @@ public class Game {
 
 	}
 
+	public static void dessineMeteorite(PanelMeteorite pnM) {
+		meteorite = MeteoriteAleatoire.choixAleatoireMeteorite();
+		pnM.setMeteorite(meteorite);
+		pnM.setLocation(rnd.nextInt(MaFenetre.LARGEUR - pnM.getMeteorite().getWidthOJ()), -meteorite.getHeightOJ());
+		pnM.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
+	}
+
 	public static void end(MaFenetre pMf) {
 
 		pMf.getPnA().removeKeyListener(keyListener);
@@ -62,7 +102,7 @@ public class Game {
 		t2.setContinuer(false);
 		t3.setContinuer(false);
 		t4.setContinuer(false);
-		File file = new File("C://temp");
+		file = new File("C://temp");
 
 		file.mkdir();
 		file = new File("C://temp/scoring");
@@ -111,7 +151,8 @@ public class Game {
 
 		son.stop();
 		// this.setVisible(false);
-		// new FenetreGameOver(pMf);
+		GameOver.clic = true;
+		GameOver.afficherGameOver(pMf);
 	}
 
 	private static void verifScore(File pFile, MaFenetre pMf) {
