@@ -7,6 +7,7 @@ import models.Heineken;
 import models.Meteorite;
 import tools.AffichageImage;
 import tools.Game;
+import tools.GestionnaireDeSon;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
 import vues.PanelAvion;
@@ -22,6 +23,7 @@ public class MonThread extends Thread {
 	private PanelFooter vPf;
 	private Rectangle rectAvion;
 	private Rectangle rectMeteo;
+	private GestionnaireDeSon son = new GestionnaireDeSon("/ressources/sonExplosion.wav");;
 
 	public MonThread(PanelAvion pnA, PanelMeteorite pnMe, MaFenetre pFenetre, PanelFooter pPf) {
 		this.vPnA = pnA;
@@ -54,7 +56,7 @@ public class MonThread extends Thread {
 		if (rectAvion.intersects(rectMeteo)) { // Collision avec cette météorite.
 
 			if (!(pMe.getMeteorite() instanceof Heineken)) { // ajoute le son d'explosion
-				Game.SON_EXPLOSION.play();
+				son.play();
 			}
 
 			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
@@ -62,7 +64,6 @@ public class MonThread extends Thread {
 			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
 				Game.end(vMaFenetre);
 				this.interrupt();
-				System.out.println(this.getState());
 
 			} else {
 
@@ -73,9 +74,9 @@ public class MonThread extends Thread {
 
 						pAv.setVaisseau(Game.IMAGE_EXPLOSION);
 						pAv.repaint();
-						Thread.sleep(500);
+						Thread.sleep(200);
 						pAv.setVaisseau(Game.IMAGE_VAISSEAU);
-						Thread.sleep(1000);
+						Thread.sleep(200);
 						pAv.repaint();
 					}
 					pMe.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
@@ -86,7 +87,7 @@ public class MonThread extends Thread {
 					Random rnd = new Random();
 					pMe.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 				} catch (InterruptedException e) {
-					System.out.println("Mode Fantôme");
+
 					e.printStackTrace();
 				}
 			}

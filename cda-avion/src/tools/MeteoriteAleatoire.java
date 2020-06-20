@@ -13,7 +13,7 @@ import models.MeteoriteSimple;
 import models.MeteoriteZigZag;
 
 public class MeteoriteAleatoire {
-	private final static byte NB_RANDOM = 5;
+	private final static byte NB_RANDOM = 2;
 	private final static byte VITESSE_NORMAL = 5;
 	private final static byte VITESSE_LENTE = 2;
 	private final static byte VITESSE_RAPIDE = 10;

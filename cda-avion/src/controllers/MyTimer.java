@@ -38,7 +38,7 @@ public class MyTimer extends Timer {
 
 					meteorite = panelMeteorite.getMeteorite();
 
-					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
+					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ() - 100)) {
 						if (Game.MY_PLAYER.getScore() < SCORE_MAX) {
 							Game.MY_PLAYER.setScore(Game.MY_PLAYER.getScore() + meteorite.getScore());
 
