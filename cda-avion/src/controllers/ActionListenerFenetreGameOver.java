@@ -7,32 +7,36 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import tools.GameOver;
+import tools.Game;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
 
 public class ActionListenerFenetreGameOver implements ActionListener {
 
 	private GameOver vFenetre;
+	private FenetreGameOver vFenetre;
+	private MaFenetre vFenetre2;
 	private static String recup = "";
 	private String name = "";
 
 	public ActionListenerFenetreGameOver(GameOver pFenetre) {
+	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre, MaFenetre pFenetre2) {
 		this.vFenetre = pFenetre;
+		this.vFenetre2 = pFenetre2;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("click");
 		name = ((JButton) e.getSource()).getName();
 
 		if (name.equalsIgnoreCase("Replay")) {
 
+			vFenetre.setVisible(false);
 			MeteoriteAleatoire.RafraichirListe();
-			new MaFenetre();
 
 		} else if (name.equalsIgnoreCase("Score")) {
 
-			MaFenetre.getListScore().forEach(x -> {
+			Game.listScore.forEach(x -> {
 				recup += x + "\n";
 
 			});
