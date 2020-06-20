@@ -1,98 +1,57 @@
 package tools;
 
-//import javax.swing.JButton;
-//import javax.swing.JLabel;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JOptionPane;
 
 import vues.MaFenetre;
 
-//import controllers.ActionListenerFenetreGameOver;
-
 public class GameOver extends JOptionPane {
 
-//	private ActionListenerFenetreGameOver listener;
-//	private JButton buttonCredits = new JButton("Go");;
-//	private JButton buttonQuitter = new JButton("Go");;
-//	private JButton buttonAffichageDesScores = new JButton("Go");;
-//	private JButton buttonReplay = new JButton("Go");;
-//	private JLabel label1 = new JLabel("Replay");
-//	private JLabel label2 = new JLabel("Voir Score");
-//	private JLabel label3 = new JLabel("Quitter");
-//	private JLabel label4 = new JLabel("Crédits");
 	private static final long serialVersionUID = 1L;
-	private static MaFenetre vMf;
+	private static String recup = "";
 
-	public GameOver() {
-
-	}
-
-	public GameOver(MaFenetre pMf) {
-		this.vMf = pMf;
-
-	}
-//		listener = new ActionListenerFenetreGameOver(this);
-//
-//		buttonReplay.setName("Replay");
-//		buttonAffichageDesScores.setName("Score");
-//		buttonQuitter.setName("Quitter");
-//		buttonCredits.setName("Crédits");
-//
-//		buttonQuitter.addActionListener(listener);
-//		buttonReplay.addActionListener(listener);
-//		buttonAffichageDesScores.addActionListener(listener);
-//		buttonCredits.addActionListener(listener);
-//
-//		buttonReplay.setBounds(170, 15, 60, 30);
-//		buttonAffichageDesScores.setBounds(170, 115, 60, 30);
-//		buttonQuitter.setBounds(170, 215, 60, 30);
-//		buttonCredits.setBounds(170, 315, 60, 30);
-//
-//		label1.setBounds(120, 15, 100, 30);
-//		label2.setBounds(100, 115, 100, 30);
-//		label3.setBounds(120, 215, 100, 30);
-//		label4.setBounds(120, 315, 100, 30);
-//
-//		pn.add(buttonReplay);
-//		pn.add(buttonAffichageDesScores);
-//		pn.add(buttonQuitter);
-//		pn.add(buttonCredits);
-//
-//		pn.add(label1);
-//		pn.add(label2);
-//		pn.add(label3);
-//		pn.add(label4);
-
-	public void afficherGameOver() {
+	public static void afficherGameOver(MaFenetre pFenetre) {
 
 		Object[] choix = { "Replay", "HighScores", "Exit", "Crédits" };
+
 		int choixClic = JOptionPane.showOptionDialog(null, "Que souhaitez vous faire?", "Game-Over",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, choix, choix[0]);
 		System.out.println(choixClic);
 
 		switch (choixClic) {
 		case 0:
-
+			MeteoriteAleatoire.RafraichirListe();
+			new MaFenetre();
 			break;
 
 		case 1:
+			MaFenetre.getListScore().forEach(x -> {
+				recup += x + "\n";
 
+			});
+
+			JOptionPane.showMessageDialog(pFenetre, recup);
+			recup = "";
 			break;
 
 		case 2:
-
+			pFenetre.dispatchEvent(new WindowEvent(pFenetre, WindowEvent.WINDOW_CLOSING));
 			break;
 
 		case 3:
+			recup = "************** DEVELOPPEURS **************** \n" + " Loreen TOURON \n" + " Matthieu WAROUX \n"
+					+ " Aurélien VANNIER \n" + "************* MUSIQUE ************ \n"
+					+ "Titre:  Cascade, Auteur: Kubbi, \n"
+					+ "Licence: https://creativecommons.org/licenses/by-sa/3.0/deed.fr, \n"
+					+ "Téléchargement (8MB): https://auboutdufil.com/?id=485";
 
+			JOptionPane.showMessageDialog(pFenetre, recup);
 			break;
 
 		default:
 			break;
 		}
-
-	}
-
-	public static void afficherGameOver(MaFenetre maFenetre) {
 
 	}
 
