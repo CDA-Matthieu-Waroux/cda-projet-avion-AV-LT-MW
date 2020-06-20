@@ -1,5 +1,6 @@
 package tools;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MonThread;
+import controllers.MyKeyListener;
 import controllers.MyTimer;
 import models.Player;
 import vues.FenetreGameOver;
@@ -25,6 +27,10 @@ public class Game {
 	private static MonThread t4;
 	public static List<String> listScore = new ArrayList<>();
 	public final static Player MY_PLAYER = new Player();
+	private static MyKeyListener keyListener;
+	public static final GestionnaireDeSon SON_EXPLOSION = new GestionnaireDeSon("/ressources/sonExplosion.wav");
+	public static final BufferedImage IMAGE_VAISSEAU = AffichageImage.afficherIMG("/ressources/VaisseauGayyyyy.png");
+	public static final BufferedImage IMAGE_EXPLOSION = AffichageImage.afficherIMG("/ressources/explosion.png");
 
 	public static void start(MaFenetre pMf) {
 
@@ -45,11 +51,14 @@ public class Game {
 		pMf.getPnA().getAvion().setPv(5);
 		pMf.getPf().getLabelVie().setText("Vie : 5");
 		pMf.getPf().getLabelScore().setText("Score : 0");
+		keyListener = new MyKeyListener(pMf.getPnA());
+		pMf.getPnA().addKeyListener(keyListener);
 
 	}
 
 	public static void end(MaFenetre pMf) {
 
+		pMf.getPnA().removeKeyListener(keyListener);
 		t1.setContinuer(false);
 		t2.setContinuer(false);
 		t3.setContinuer(false);

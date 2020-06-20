@@ -35,8 +35,12 @@ public class GestionnaireDeSon {
 	}
 
 	public void playContinuly() {
-		this.clip.start();
+		play();
 		this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+	}
+
+	public void play() {
+		this.clip.start();
 	}
 
 	public void stop() {

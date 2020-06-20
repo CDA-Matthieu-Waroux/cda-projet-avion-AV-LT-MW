@@ -1,20 +1,17 @@
 package controllers;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.imageio.ImageIO;
-
 import models.Avion;
 import models.Meteorite;
 import models.MeteoriteZigZag;
+import tools.AffichageImage;
 import tools.Game;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
-import vues.PanelCentral;
 import vues.PanelFooter;
 import vues.PanelMeteorite;
 
@@ -55,14 +52,8 @@ public class MyTimer extends Timer {
 						panelMeteorite.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
 						meteorite = panelMeteorite.getMeteorite();
 						panelMeteorite.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
-						img = PanelCentral.class.getResourceAsStream(meteorite.getvLienPhoto());
+						panelMeteorite.setImgMeteorite(AffichageImage.afficherIMG(meteorite.getvLienPhoto()));
 
-						try {
-							panelMeteorite.setImgMeteorite(ImageIO.read(img));
-
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 						panelMeteorite.repaint();
 						panelMeteorite.setLocation(rnd.nextInt(621), -meteorite.getHeightOJ());
 					}

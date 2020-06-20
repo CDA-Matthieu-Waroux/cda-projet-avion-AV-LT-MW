@@ -2,14 +2,11 @@ package vues;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import controllers.MyKeyListener;
 import models.Avion;
+import tools.Game;
 
 public class PanelAvion extends JPanel {
 
@@ -27,20 +24,14 @@ public class PanelAvion extends JPanel {
 
 	public PanelAvion(PanelCentral pCentral) {
 
-		InputStream img = PanelCentral.class.getResourceAsStream(avion.getvLienPhoto());
-
-		try {
-			vaisseau = ImageIO.read(img);// avec read, tj ioexception
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		vaisseau = Game.IMAGE_VAISSEAU;
 		this.setSize(LARGEUR, HAUTEUR);
 		this.setLocation((MaFenetre.LARGEUR / 2) - LARGEUR, MaFenetre.HAUTEUR - HAUTEUR - 100);
 		this.setIgnoreRepaint(true);
 		this.setFocusable(true);// le focus sera fait sur ce panel !
 		this.setOpaque(false);// definir opacity du panel à 0, pour voir le fond
 		// d'écran
-		this.addKeyListener(new MyKeyListener(this));
+		// this.addKeyListener(new MyKeyListener(this));
 	}
 
 	public Avion getAvion() {
