@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import models.Avion;
 import models.Meteorite;
 import models.MeteoriteZigZag;
+import tools.Game;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
 import vues.PanelCentral;
@@ -41,12 +42,12 @@ public class MyTimer extends Timer {
 					meteorite = panelMeteorite.getMeteorite();
 
 					if (panelMeteorite.getY() > (MaFenetre.HAUTEUR - meteorite.getHeightOJ())) {
-						if (MaFenetre.MY_PLAYER.getScore() < SCORE_MAX) {
-							MaFenetre.MY_PLAYER.setScore(MaFenetre.MY_PLAYER.getScore() + meteorite.getScore());
+						if (Game.MY_PLAYER.getScore() < SCORE_MAX) {
+							Game.MY_PLAYER.setScore(Game.MY_PLAYER.getScore() + meteorite.getScore());
 
-							vPanelFooter.getLabelScore().setText("Score :  " + MaFenetre.MY_PLAYER.getScore());
-							if (MaFenetre.MY_PLAYER.getScore() > SCORE_MAX) {
-								MaFenetre.MY_PLAYER.setScore(SCORE_MAX);
+							vPanelFooter.getLabelScore().setText("Score :  " + Game.MY_PLAYER.getScore());
+							if (Game.MY_PLAYER.getScore() > SCORE_MAX) {
+								Game.MY_PLAYER.setScore(SCORE_MAX);
 							}
 						}
 

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import tools.Game;
 import tools.MeteoriteAleatoire;
 import vues.FenetreGameOver;
 import vues.MaFenetre;
@@ -29,11 +30,10 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 		if (name.equalsIgnoreCase("Replay")) {
 			vFenetre.setVisible(false);
 			MeteoriteAleatoire.RafraichirListe();
-			vFenetre2.startGame();
 
 		} else if (name.equalsIgnoreCase("Score")) {
 
-			MaFenetre.getListScore().forEach(x -> {
+			Game.listScore.forEach(x -> {
 				recup += x + "\n";
 
 			});

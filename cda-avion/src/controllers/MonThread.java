@@ -1,5 +1,6 @@
-package vues;
+package controllers;
 
+import java.awt.Rectangle;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import models.Heineken;
 import models.Meteorite;
+import tools.Game;
 import tools.MeteoriteAleatoire;
+import vues.MaFenetre;
+import vues.PanelAvion;
+import vues.PanelCentral;
+import vues.PanelFooter;
+import vues.PanelMeteorite;
 
 public class MonThread extends Thread {
 
@@ -23,6 +30,8 @@ public class MonThread extends Thread {
 	private PanelMeteorite vPnMe;
 	private MaFenetre vMaFenetre;
 	private PanelFooter vPf;
+	private Rectangle rectAvion;
+	private Rectangle rectMeteo;
 
 	public MonThread(PanelAvion pnA, PanelMeteorite pnMe, MaFenetre pFenetre, PanelFooter pPf) {
 		this.vPnA = pnA;
@@ -48,23 +57,25 @@ public class MonThread extends Thread {
 	}
 
 	public void calculerCollision(PanelAvion pAv, PanelMeteorite pMe) {
-		int xMet1 = pMe.getX(); // abcisse du pixel inital du panneau
-		int xMet2 = pMe.getWidth() + pMe.getX(); // abcisse du pixel opposé du panneau
+//		int xMet1 = pMe.getX(); // abcisse du pixel inital du panneau
+//		int xMet2 = pMe.getWidth() + pMe.getX(); // abcisse du pixel opposé du panneau
+//
+//		int xAv1 = pAv.getX();
+//		int xAv2 = pAv.getX() + pAv.getWidth();
+//
+//		int yMet1 = pMe.getY();
+//		int yMet2 = pMe.getY() + pMe.getHeight();
+//
+//		int yAv1 = pAv.getY();
+//		int yAv2 = pAv.getY() + pAv.getHeight();
+//
+//		double chevauchementX = Math.signum((xMet1 - xAv2) * (xMet2 - xAv1)); // signum retourne 1.0, 0.0 ou -1.0
+//
+//		double chevauchementY = Math.signum((yMet1 - yAv2) * (yMet2 - yAv1));
+		rectAvion = pAv.getBounds();
+		rectMeteo = pMe.getBounds();
 
-		int xAv1 = pAv.getX();
-		int xAv2 = pAv.getX() + pAv.getWidth();
-
-		int yMet1 = pMe.getY();
-		int yMet2 = pMe.getY() + pMe.getHeight();
-
-		int yAv1 = pAv.getY();
-		int yAv2 = pAv.getY() + pAv.getHeight();
-
-		double chevauchementX = Math.signum((xMet1 - xAv2) * (xMet2 - xAv1)); // signum retourne 1.0, 0.0 ou -1.0
-
-		double chevauchementY = Math.signum((yMet1 - yAv2) * (yMet2 - yAv1));
-
-		if (chevauchementX == chevauchementY && chevauchementX == -1.0) { // Collision avec cette météorite.
+		if (rectAvion.intersects(rectMeteo)) { // Collision avec cette météorite.
 
 			if (!(pMe.getMeteorite() instanceof Heineken)) { // ajoute le son d'explosion
 				try {
@@ -84,9 +95,11 @@ public class MonThread extends Thread {
 			pAv.getAvion().setPv(pAv.getAvion().getPv() - pMe.getMeteorite().getDegat()); // Gère les dégats subits
 			vPf.getLabelVie().setText("Vie : " + pAv.getAvion().getPv());
 			if (pAv.getAvion().getPv() <= 0) { // Game Over permet la sortie du thread
-				this.continuer = false;
+				// this.continuer = false;
 
-				vMaFenetre.finDePartie();
+				Game.end(vMaFenetre);
+				this.interrupt();
+				System.out.println(this.getState());
 
 			} else {
 

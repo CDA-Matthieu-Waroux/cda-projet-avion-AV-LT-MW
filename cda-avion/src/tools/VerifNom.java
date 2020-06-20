@@ -28,7 +28,7 @@ public class VerifNom {
 					JOptionPane.showMessageDialog(pMf, "Le nom doit contenir 3 caractères minimum");
 					verificationNom(pMf);
 				} else {
-					MaFenetre.MY_PLAYER.setNom(nomJoueur);
+					Game.MY_PLAYER.setNom(nomJoueur);
 					continuer = false;
 
 				}

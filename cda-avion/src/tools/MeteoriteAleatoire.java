@@ -13,6 +13,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import controllers.MonThread;
 import models.Heineken;
 import models.Meteorite;
 import models.MeteoriteFeu;
@@ -20,7 +21,6 @@ import models.MeteoriteGlace;
 import models.MeteoriteIceBerg;
 import models.MeteoriteSimple;
 import models.MeteoriteZigZag;
-import vues.MonThread;
 
 public class MeteoriteAleatoire {
 	private final static byte NB_RANDOM = 5;
