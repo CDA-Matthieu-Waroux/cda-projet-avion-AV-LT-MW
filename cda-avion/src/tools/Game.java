@@ -16,7 +16,6 @@ import controllers.MonThread;
 import controllers.MyKeyListener;
 import controllers.MyTimer;
 import models.Player;
-import vues.FenetreGameOver;
 import vues.MaFenetre;
 
 public class Game {
@@ -112,7 +111,7 @@ public class Game {
 
 		son.stop();
 		// this.setVisible(false);
-		new FenetreGameOver(pMf);
+		// new FenetreGameOver(pMf);
 	}
 
 	private static void verifScore(File pFile, MaFenetre pMf) {

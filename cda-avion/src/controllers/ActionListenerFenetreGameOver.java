@@ -6,23 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import tools.GameOver;
 import tools.Game;
+import tools.GameOver;
 import tools.MeteoriteAleatoire;
 import vues.MaFenetre;
 
 public class ActionListenerFenetreGameOver implements ActionListener {
 
 	private GameOver vFenetre;
-	private FenetreGameOver vFenetre;
+
 	private MaFenetre vFenetre2;
 	private static String recup = "";
 	private String name = "";
 
 	public ActionListenerFenetreGameOver(GameOver pFenetre) {
-	public ActionListenerFenetreGameOver(FenetreGameOver pFenetre, MaFenetre pFenetre2) {
-		this.vFenetre = pFenetre;
-		this.vFenetre2 = pFenetre2;
 	}
 
 	@Override
