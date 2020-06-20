@@ -163,8 +163,8 @@ public class MaFenetre extends JFrame {
 		}
 		clip.close();
 
-		GameOver(this);
-		// **********************************************************************************
+		GameOver.afficherGameOver(this);
+
 	}
 
 	private void GameOver(MaFenetre maFenetre) {

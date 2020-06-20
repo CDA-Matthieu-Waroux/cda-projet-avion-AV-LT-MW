@@ -22,6 +22,7 @@ public class ActionListenerFenetreGameOver implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		System.out.println("click");
 		name = ((JButton) e.getSource()).getName();
 

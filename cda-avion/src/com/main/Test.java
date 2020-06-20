@@ -1,17 +1,12 @@
 package com.main;
 
-import tools.GameOver;
+import vues.MaFenetre;
 
 public class Test {
 
 	public static void main(String[] args) {
 
-		// new MaFenetre();
-		new GameOver();
-
-//		new MaFenetre();
-		// new GameOver().afficherGameOver();
-		;
+		new MaFenetre();
 
 	}
 }
