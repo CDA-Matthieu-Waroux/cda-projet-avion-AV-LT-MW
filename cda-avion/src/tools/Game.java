@@ -43,6 +43,15 @@ public class Game {
 		t3.start();
 		t4.start();
 		son.playContinuly();
+		new MyTimer(MaFenetre.TAUX_RAFRAICHESSEMENT, pMf.getPnA().getAvion(), pMf.getPf(), pMf.getPnM1(), pMf.getPnM2(),
+				pMf.getPnM3(), pMf.getPnM4());
+		MY_PLAYER.setScore(999);
+		pMf.getPnA().getAvion().setPv(5);
+
+		pMf.getPf().getLabelVie().setText("Vie : 5");
+		pMf.getPf().getLabelScore().setText("Score : 0");
+		keyListener = new MyKeyListener(pMf.getPnA());
+		pMf.getPnA().addKeyListener(keyListener);
 
 		new MyTimer(MaFenetre.TAUX_RAFRAICHESSEMENT, pMf.getPnA().getAvion(), pMf.getPf(), pMf.getPnM1(), pMf.getPnM2(),
 				pMf.getPnM3(), pMf.getPnM4());

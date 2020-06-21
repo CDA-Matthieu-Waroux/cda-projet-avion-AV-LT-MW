@@ -2,6 +2,7 @@ package tools;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -14,6 +15,7 @@ import controllers.MonThread;
 
 public class GestionnaireDeSon {
 	private Clip clip;
+	InputStream stream;
 	BufferedInputStream bufferedIn;
 	AudioInputStream son;
 	FloatControl gainControl;
@@ -21,8 +23,8 @@ public class GestionnaireDeSon {
 	public GestionnaireDeSon(String pChemin) {
 
 		try { // Tout dans le try permet de lire la musqiue du jeu en boucle.
-
-			this.bufferedIn = (BufferedInputStream) MonThread.class.getResourceAsStream(pChemin);
+			this.stream = MonThread.class.getResourceAsStream(pChemin);
+			this.bufferedIn = new BufferedInputStream(stream);
 			this.son = AudioSystem.getAudioInputStream(this.bufferedIn);
 			this.clip = AudioSystem.getClip();
 			this.clip.open(son);
