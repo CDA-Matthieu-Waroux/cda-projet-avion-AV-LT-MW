@@ -93,6 +93,8 @@ public class Game {
 		pnM.setMeteorite(meteorite);
 		pnM.setLocation(rnd.nextInt(MaFenetre.LARGEUR - pnM.getMeteorite().getWidthOJ()), -meteorite.getHeightOJ());
 		pnM.setSize(meteorite.getWidthOJ(), meteorite.getHeightOJ());
+		pnM.setImgMeteorite(AffichageImage.afficherIMG(meteorite.getvLienPhoto()));
+		pnM.repaint();
 	}
 
 	public static void end(MaFenetre pMf) {

@@ -74,9 +74,8 @@ public class MonThread extends Thread {
 
 						pAv.setVaisseau(Game.IMAGE_EXPLOSION);
 						pAv.repaint();
-						Thread.sleep(200);
+						Thread.sleep(100);
 						pAv.setVaisseau(Game.IMAGE_VAISSEAU);
-						Thread.sleep(200);
 						pAv.repaint();
 					}
 					pMe.setMeteorite(MeteoriteAleatoire.choixAleatoireMeteorite());
